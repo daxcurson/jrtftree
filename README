@@ -1,0 +1,14 @@
+JRtfTree Library is a set of classes written entirely in Java that may be used to manage RTF documents in your own applications. 
+
+JRtfTree is licensed under The GNU Lesser General Public License (LGPLv3).
+
+JRtfTree will help you:
+
+* Open and parse RTF files.
+* Analyze the content of RTF files.
+* Add, modify and remove document elements (i.e. text, control words, control symbols).
+* Create new RTF documents.
+
+You can find up-to-date information about JRtfTree Library at:
+
+http://www.sgoliver.net/blog/?page_id=92&lang_view=en
