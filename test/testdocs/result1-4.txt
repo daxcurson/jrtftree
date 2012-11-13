@@ -1,0 +1,105 @@
+ROOT
+  GROUP
+    KEYWORD: rtf 1
+    KEYWORD: ansi
+    KEYWORD: ansicpg 1252
+    KEYWORD: deff 0
+    KEYWORD: deflang 3082
+    GROUP
+      KEYWORD: fonttbl
+      GROUP
+        KEYWORD: f 0
+        KEYWORD: froman
+        KEYWORD: fprq 2
+        KEYWORD: fcharset 0
+        TEXT: Times New Roman;
+      GROUP
+        KEYWORD: f 1
+        KEYWORD: fswiss
+        KEYWORD: fprq 2
+        KEYWORD: fcharset 0
+        TEXT: Arial;
+      GROUP
+        KEYWORD: f 2
+        KEYWORD: fswiss
+        KEYWORD: fcharset 0
+        TEXT: Arial;
+    GROUP
+      KEYWORD: colortbl
+      TEXT: ;
+      KEYWORD: red 0
+      KEYWORD: green 0
+      KEYWORD: blue 128
+      TEXT: ;
+      KEYWORD: red 255
+      KEYWORD: green 0
+      KEYWORD: blue 0
+      TEXT: ;
+    GROUP
+      CONTROL: *
+      KEYWORD: generator
+      TEXT: Msftedit 5.41.15.1515;
+    KEYWORD: viewkind 4
+    KEYWORD: uc 1
+    KEYWORD: pard
+    KEYWORD: qj
+    KEYWORD: lang 2057
+    KEYWORD: ul
+    KEYWORD: b
+    KEYWORD: i
+    KEYWORD: f 0
+    KEYWORD: fs 28
+    TEXT: Bold Italic Underline Size 14
+    KEYWORD: ulnone
+    KEYWORD: b 0
+    KEYWORD: i 0
+    KEYWORD: fs 24
+    KEYWORD: par
+    KEYWORD: par
+    KEYWORD: fs 22
+    TEXT: Times New Roman 11. Adipiscing elit. 
+    KEYWORD: lang 3082
+    TEXT: Integer quis eros at tortor 
+    KEYWORD: ul
+    TEXT: underline1
+    KEYWORD: ulnone
+    TEXT: . Quisque viverra tellus id mauris 
+    KEYWORD: cf 1
+    KEYWORD: b
+    TEXT: blue1
+    KEYWORD: cf 0
+    KEYWORD: b 0
+    TEXT:  luctus. Fusce in interdum ipsum. Cum sociis natoque penatibus et 
+    KEYWORD: i
+    TEXT: italic1 
+    KEYWORD: i 0
+    TEXT: dis parturient montes, nascetur ridiculus mus.
+    KEYWORD: fs 24
+    TEXT:  Special characters: tést1 añu {\test2}.
+    KEYWORD: par
+    KEYWORD: par
+    KEYWORD: f 1
+    TEXT: Arial 12. Ac leo justo, vitae rutrum elit. Nam purus odio, 
+    KEYWORD: b
+    TEXT: bold1
+    KEYWORD: b 0
+    TEXT: . Etiam vitae 
+    KEYWORD: cf 2
+    TEXT: red1
+    KEYWORD: cf 0
+    TEXT: . Aenean molestie, quis 
+    KEYWORD: cf 1
+    KEYWORD: b
+    TEXT: blue2
+    KEYWORD: cf 0
+    KEYWORD: b 0
+    TEXT:  leo placerat in. 
+    KEYWORD: i
+    TEXT: Italic2
+    KEYWORD: i 0
+    TEXT:  malesuada eleifend nunc vitae cursus. Praesent dapibus aliquet sem, ac pharetra ipsum tempus id.
+    KEYWORD: f 2
+    KEYWORD: fs 20
+    KEYWORD: sgo -1
+    TEXT: ést.
+    KEYWORD: par
