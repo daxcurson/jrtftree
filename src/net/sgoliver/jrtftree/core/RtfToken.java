@@ -28,7 +28,7 @@
 
 package net.sgoliver.jrtftree.core;
 
-public class RtfToken
+public class RtfToken //In Sync
 {
 	/**
 	 * Tipo de token.

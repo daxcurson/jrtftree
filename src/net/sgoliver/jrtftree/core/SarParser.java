@@ -33,7 +33,7 @@ package net.sgoliver.jrtftree.core;
  * los tipos de elementos presentes en un documento RTF. Estos métodos serán llamados automáticamente 
  * durante el análisis del documento RTF realizado por la clase RtfReader.
  */
-public abstract class SarParser
+public abstract class SarParser //In Sync
 {
 	/**
 	 * Este método se llama una sóla vez al comienzo del análisis del documento RTF.

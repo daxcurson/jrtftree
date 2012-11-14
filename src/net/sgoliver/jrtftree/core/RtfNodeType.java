@@ -31,7 +31,7 @@ package net.sgoliver.jrtftree.core;
 /**
  * Tipos de nodo de un documento RTF.
  */
-public class RtfNodeType
+public class RtfNodeType //In Sync
 {
 	/**
 	 * Nodo raíz.

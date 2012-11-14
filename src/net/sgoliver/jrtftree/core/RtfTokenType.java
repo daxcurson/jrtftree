@@ -31,7 +31,7 @@ package net.sgoliver.jrtftree.core;
 /**
  * Tipos de token de un árbol de documento RTF.
  */
-public class RtfTokenType
+public class RtfTokenType //In Sync
 {
 	/**
 	 * Indica que el token sólo se ha inicializado.

@@ -36,7 +36,7 @@ import java.io.StringReader;
 /**
  * Esta clase proporciona los métodos necesarios para la carga y análisis secuencial de un documento RTF. 
  */
-public class RtfReader
+public class RtfReader //In Sync
 {
     private Reader rtf;			//Fichero/Cadena de entrada RTF
     private RtfLex lex;			//Analizador léxico para RTF

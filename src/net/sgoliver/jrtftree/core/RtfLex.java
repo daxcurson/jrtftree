@@ -35,7 +35,7 @@ import java.io.*;
  * Analizador léxico (tokenizador) para documentos en formato RTF. Analiza el documento y devuelve de 
  * forma secuencial todos los elementos RTF leidos (tokens).
  */
-public class RtfLex
+public class RtfLex //In Sync
 {
 	//Atributos
 	private Reader rtf;
