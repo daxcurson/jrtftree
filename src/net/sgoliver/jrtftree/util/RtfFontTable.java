@@ -30,7 +30,7 @@ package net.sgoliver.jrtftree.util;
 
 import java.util.HashMap;
 
-public class RtfFontTable 
+public class RtfFontTable //In Sync
 {
 	private HashMap<Integer, String> fonts = null;
 	

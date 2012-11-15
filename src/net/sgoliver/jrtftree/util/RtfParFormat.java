@@ -30,7 +30,7 @@ package net.sgoliver.jrtftree.util;
 
 import net.sgoliver.jrtftree.util.TextAlignment;;
 
-public class RtfParFormat 
+public class RtfParFormat //In Sync
 {
 	private int alignment = TextAlignment.LEFT;
     private float leftIndentation = 0;

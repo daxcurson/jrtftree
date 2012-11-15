@@ -31,7 +31,7 @@ package net.sgoliver.jrtftree.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class InfoGroup
+public class InfoGroup //In Sync
 {
     private String title = "";
     private String subject = "";
@@ -55,6 +55,7 @@ public class InfoGroup
     private int nofwords = -1;
     private int nofchars = -1;
     private int id = -1;
+    
 	public void setTitle(String title)
 	{
 		this.title = title;

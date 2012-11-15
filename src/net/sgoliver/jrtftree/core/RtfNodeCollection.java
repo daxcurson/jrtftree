@@ -33,7 +33,7 @@ import java.util.ArrayList;
 /**
  * Colección de nodos de un documento RTF. 
  */
-public class RtfNodeCollection
+public class RtfNodeCollection //In Sync
 {
 	private ArrayList<RtfTreeNode> collection;
 	

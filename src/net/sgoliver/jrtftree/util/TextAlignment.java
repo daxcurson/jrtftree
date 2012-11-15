@@ -31,7 +31,7 @@ package net.sgoliver.jrtftree.util;
 /**
  * Tipos de hojas de estilo de un documento RTF.
  */
-public class TextAlignment
+public class TextAlignment //In Sync
 {
 	/**
 	 * Texto centrado.

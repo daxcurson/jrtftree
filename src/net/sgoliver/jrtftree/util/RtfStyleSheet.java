@@ -30,7 +30,7 @@ package net.sgoliver.jrtftree.util;
 
 import net.sgoliver.jrtftree.core.RtfNodeCollection;
 
-public class RtfStyleSheet 
+public class RtfStyleSheet //In Sync
 {
     //Atributos Privados
 

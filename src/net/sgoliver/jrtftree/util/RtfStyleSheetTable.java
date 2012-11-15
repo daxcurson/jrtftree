@@ -30,7 +30,7 @@ package net.sgoliver.jrtftree.util;
 
 import java.util.*;
 
-public class RtfStyleSheetTable 
+public class RtfStyleSheetTable //In Sync
 {
 	private HashMap<Integer, RtfStyleSheet> stylesheets = null;
 	

@@ -31,7 +31,7 @@ package net.sgoliver.jrtftree.util;
 import java.awt.Color;
 import java.util.LinkedList;
 
-public class RtfColorTable 
+public class RtfColorTable //In Sync
 {
 	private LinkedList<Color> colors;
 	

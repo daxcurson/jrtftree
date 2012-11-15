@@ -28,35 +28,35 @@
 
 package net.sgoliver.jrtftree.util;
 
-public class RtfDocumentFormat 
+public class RtfDocumentFormat //In Sync
 {
     private float marginl = 2;
     private float marginr = 2;
     private float margint = 2;
     private float marginb = 2;
     
-	public void setMarginl(float marginl) {
+	public void setMarginL(float marginl) {
 		this.marginl = marginl;
 	}
-	public float getMarginl() {
+	public float getMarginL() {
 		return marginl;
 	}
-	public void setMarginr(float marginr) {
+	public void setMarginR(float marginr) {
 		this.marginr = marginr;
 	}
-	public float getMarginr() {
+	public float getMarginR() {
 		return marginr;
 	}
-	public void setMargint(float margint) {
+	public void setMarginT(float margint) {
 		this.margint = margint;
 	}
-	public float getMargint() {
+	public float getMarginT() {
 		return margint;
 	}
-	public void setMarginb(float marginb) {
+	public void setMarginB(float marginb) {
 		this.marginb = marginb;
 	}
-	public float getMarginb() {
+	public float getMarginB() {
 		return marginb;
 	}
 }

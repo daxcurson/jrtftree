@@ -30,7 +30,7 @@ package net.sgoliver.jrtftree.util;
 
 import java.awt.Color;
 
-public class RtfCharFormat 
+public class RtfCharFormat //In Sync
 {
 	private boolean bold = false;
 	private boolean italic = false;

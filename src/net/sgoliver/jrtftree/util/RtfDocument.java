@@ -271,10 +271,10 @@ public class RtfDocument
      */
     public void updateDocFormat(RtfDocumentFormat format)
     {
-        docFormat.setMarginl(format.getMarginl());
-        docFormat.setMarginr(format.getMarginr());
-        docFormat.setMargint(format.getMargint());
-        docFormat.setMarginb(format.getMarginb());
+        docFormat.setMarginL(format.getMarginL());
+        docFormat.setMarginR(format.getMarginR());
+        docFormat.setMarginT(format.getMarginT());
+        docFormat.setMarginB(format.getMarginB());
     }
    
     /**
@@ -664,10 +664,10 @@ public class RtfDocument
 
         //RtfDocumentFormat Properties
 
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margl", true, calcTwips(docFormat.getMarginl())));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margr", true, calcTwips(docFormat.getMarginr())));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margt", true, calcTwips(docFormat.getMargint())));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margb", true, calcTwips(docFormat.getMarginb())));
+        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margl", true, calcTwips(docFormat.getMarginL())));
+        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margr", true, calcTwips(docFormat.getMarginR())));
+        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margt", true, calcTwips(docFormat.getMarginT())));
+        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margb", true, calcTwips(docFormat.getMarginB())));
     }
 
     /// <summary>
