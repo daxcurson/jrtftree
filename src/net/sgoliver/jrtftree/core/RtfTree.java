@@ -84,7 +84,7 @@ public class RtfTree
     {
         RtfTree clon = new RtfTree();
 
-        clon.rootNode = this.rootNode.cloneNode(true);
+        clon.rootNode = this.rootNode.cloneNode();
 
         return clon;
     }
@@ -826,7 +826,7 @@ public class RtfTree
 
                 for (int j = 2; j < node.getChildNodes().size(); j++)
                 {
-                    col.add(node.getChildNodes().get(j).cloneNode(true));
+                    col.add(node.getChildNodes().get(j).cloneNode());
                 }
                 
                 rss.setKeyCode(col);

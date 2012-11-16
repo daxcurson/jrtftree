@@ -406,7 +406,7 @@ public class RtfMerger
         for (int i = indPard + 1; i < treeToCopyParent.getRootNode().firstChild().getChildNodes().size(); i++)
         {
             RtfTreeNode newNode = 
-                treeToCopyParent.getRootNode().firstChild().getChildNodes().get(i).cloneNode(true);
+                treeToCopyParent.getRootNode().firstChild().getChildNodes().get(i).cloneNode();
 
             newGroup.appendChild(newNode);
         }

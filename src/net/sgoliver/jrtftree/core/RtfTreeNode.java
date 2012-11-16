@@ -35,7 +35,7 @@ import java.nio.charset.Charset;
 /**
  * Nodo RTF de la representación en árbol de un documento. 
  */
-public class RtfTreeNode
+public class RtfTreeNode //In Sync
 {
 	//Atributos
 	private int nodeType;
@@ -156,8 +156,8 @@ public class RtfTreeNode
 	        //Se actualizan las propiedades Root y Tree del nuevo nodo y sus posibles hijos
             updateNodeRoot(newNode);
 	
-	        //Se añade el nuevo nodo al final de la lista de nodos hijo
-	        children.add(newNode);
+				        //Se añade el nuevo nodo al final de la lista de nodos hijo
+				        children.add(newNode);
 		}
     }
     
@@ -228,38 +228,33 @@ public class RtfTreeNode
 
     /**
      * Realiza una copia exacta del nodo actual.
-     * @param cloneChildren Si este parámetro recibe el valor true se clonarán también todos los nodos hijo del nodo actual.
      * @return Devuelve una copia exacta del nodo actual.
      */
-    public RtfTreeNode cloneNode(boolean cloneChildren)
+    public RtfTreeNode cloneNode()
     {
         RtfTreeNode clon = new RtfTreeNode();
 
         clon.key = this.key;
         clon.hasParam = this.hasParam;
         clon.param = this.param;
-        clon.parent = this.parent;
-        clon.root = this.root;
+        clon.parent = null;
+        clon.root = null;
+        clon.tree = null;
         clon.nodeType = this.nodeType;
-        clon.tree = this.tree;
 
-        //Si cloneChildren=false se copia directamente la lista de hijos
-        if(!cloneChildren)
-        {
-            clon.children = this.children;
-        }
-        else  //En caso contrario se clonan también cada uno de los hijos, propagando el parámetro cloneChildren=true
-        {
-            clon.children = null;
+        //Se clonan también cada uno de los hijos
+        clon.children = null;
 
-            if (this.children != null)
+        if (this.children != null)
+        {
+            clon.children = new RtfNodeCollection();
+            
+            for(int i=0; i<children.size(); i++)
             {
-                clon.children = new RtfNodeCollection();
-                
-	            for(int i=0; i<children.size(); i++)
-	            {
-	            	clon.children.add(children.get(i).cloneNode(true));
-	            }
+            	RtfTreeNode childclon = children.get(i).cloneNode();
+            	childclon.parent = clon;
+            	
+            	clon.children.add(childclon);
             }
         }
 
@@ -372,27 +367,7 @@ public class RtfTreeNode
      */
     public RtfTreeNode selectSingleChildGroup(String keyword)
     {
-        int i = 0;
-        boolean found = false;
-        RtfTreeNode node = null;
-
-        if (children != null)
-        {
-            while (i < children.size() && !found)
-            {
-                if (children.get(i).getNodeType() == RtfNodeType.GROUP &&
-                    children.get(i).hasChildNodes() &&
-                    children.get(i).firstChild().getNodeKey().equals(keyword))
-                {
-                    node = children.get(i);
-                    found = true;
-                }
-
-                i++;
-            }
-        }
-
-        return node;
+        return selectSingleChildGroup(keyword, false);
     }
     
     /**
@@ -510,36 +485,7 @@ public class RtfTreeNode
      */
     public RtfTreeNode selectSingleGroup(String keyword)
     {
-        int i = 0;
-        boolean found = false;
-        RtfTreeNode node = null;
-
-        if (children != null)
-        {
-            while (i < children.size() && !found)
-            {
-                if (children.get(i).getNodeType() == RtfNodeType.GROUP &&
-                    children.get(i).hasChildNodes() &&
-                    children.get(i).firstChild().getNodeKey().equals(keyword))
-                {
-                    node = children.get(i);
-                    found = true;
-                }
-                else
-                {
-                    node = children.get(i).selectSingleGroup(keyword);
-
-                    if (node != null)
-                    {
-                        found = true;
-                    }
-                }
-
-                i++;
-            }
-        }
-
-        return node;
+        return selectSingleGroup(keyword, false);
     }
     
     /**
@@ -680,26 +626,7 @@ public class RtfTreeNode
      */
     public RtfNodeCollection selectGroups(String keyword)
     {
-        RtfNodeCollection nodes = new RtfNodeCollection();
-
-        if (children != null)
-        {
-        	for(int i=0; i<children.size(); i++)
-	        {
-        		RtfTreeNode node = children.get(i);
-        		
-                if (node.getNodeType() == RtfNodeType.GROUP &&
-                    node.hasChildNodes() &&
-                    node.firstChild().getNodeKey().equals(keyword))
-                {
-                    nodes.add(node);
-                }
-
-                nodes.addRange(node.selectGroups(keyword));
-            }
-        }
-
-        return nodes;
+        return selectGroups(keyword, false);
     }
     
     /**
@@ -792,24 +719,7 @@ public class RtfTreeNode
      */
     public RtfNodeCollection selectChildGroups(String keyword)
     {
-        RtfNodeCollection nodes = new RtfNodeCollection();
-
-        if (children != null)
-        {
-        	for(int i=0; i<children.size(); i++)
-            {
-        		RtfTreeNode node = children.get(i);
-        		
-                if (node.getNodeType() == RtfNodeType.GROUP &&
-                    node.hasChildNodes() &&
-                    node.firstChild().getNodeKey().equals(keyword))
-                {
-                    nodes.add(node);
-                }
-            }
-        }
-
-        return nodes;
+    	return selectChildGroups(keyword, false);
     }
     
     /**
@@ -1049,6 +959,17 @@ public class RtfTreeNode
     //Métodos Privados
     
     /**
+     * Decodifica un caracter especial indicado por su código decimal
+     * @param code Código del caracter especial (\')
+     * @param enc Codificación utilizada para decodificar el caracter especial.
+     * @return Caracter especial decodificado.
+     */
+    private static String decodeControlChar(int code, Charset enc)
+    {
+        return enc.decode(ByteBuffer.wrap(new byte[] {(byte)code})).toString();                
+    }
+    
+    /**
      * Devuelve el código RTF del nodo actual y todos sus nodos hijos.
      * @return Código RTF del nodo actual y todos sus nodos hijos.
      */
@@ -1080,13 +1001,15 @@ public class RtfTreeNode
             res.append("{");
         else
         {
-            if (curNode.nodeType != RtfNodeType.TEXT)
+            if (curNode.nodeType == RtfNodeType.CONTROL ||
+            	curNode.nodeType == RtfNodeType.KEYWORD)
             {
                 res.append("\\");
             }
-            else  //curNode.NodeType == RTF_NODE_TYPE.TEXT
+            else  //curNode.NodeType == RtfNodeType.TEXT
             {
-                if (prevNode != null && prevNode.nodeType == RtfNodeType.KEYWORD)
+                if (prevNode != null && 
+                	prevNode.nodeType == RtfNodeType.KEYWORD)
                 {
                 	int code = Character.codePointAt(curNode.getNodeKey(), 0);
 
@@ -1147,8 +1070,6 @@ public class RtfTreeNode
      */
     private void appendEncoded(StringBuilder res, String s, Charset enc)
     {
-        //Contributed by Jan Stuchlík
-
         for (int i = 0; i < s.length(); i++)
         {
             int code = Character.codePointAt(s, i);
@@ -1178,8 +1099,6 @@ public class RtfTreeNode
      */
     private String getHexa(int code)
     {
-        //Contributed by Jan Stuchlík
-
         String hexa = Integer.toHexString(code);
 
         if (hexa.length() == 1)
@@ -1211,6 +1130,103 @@ public class RtfTreeNode
                 updateNodeRoot(node.children.get(i));
             }
         }
+    }
+    
+    /**
+     * Devuelve el fragmento de texto del documento contenido en el nodo actual.
+     * @param raw Si este parámetro está activado se extraerá todo el texto contenido en el nodo, independientemente de si éste forma parte del texto real del documento.
+     * @return Fragmento de texto del documento contenido en el nodo actual.
+     */
+    public String getText(boolean raw)
+    {
+    	return getText(raw, 1);
+    }
+    
+    /**
+     * Devuelve todo el texto contenido en el nodo actual.
+     * @param raw Si este parámetro está activado se extraerá todo el texto contenido en el nodo, independientemente de si éste forma parte del texto real del documento.
+     * @param ignoreNchars Ignore next N chars following \\uN keyword
+     * @return Texto contenido en el nodo actual.
+     */
+    public String getText(boolean raw, int ignoreNchars)
+    {
+    	StringBuilder res = new StringBuilder("");
+
+        if (this.getNodeType() == RtfNodeType.GROUP)
+        {
+            int indkw = this.firstChild().getNodeKey().equals("*") ? 1 : 0;
+
+            if (raw ||
+               (!this.children.get(indkw).getNodeKey().equals("fonttbl") &&
+                !this.children.get(indkw).getNodeKey().equals("colortbl") &&
+                !this.children.get(indkw).getNodeKey().equals("stylesheet") &&
+                !this.children.get(indkw).getNodeKey().equals("generator") &&
+                !this.children.get(indkw).getNodeKey().equals("info") &&
+                !this.children.get(indkw).getNodeKey().equals("pict") &&
+                !this.children.get(indkw).getNodeKey().equals("object") &&
+                !this.children.get(indkw).getNodeKey().equals("fldinst")))
+            {
+                if (children != null)
+                {
+                    int uc = ignoreNchars;
+                    for(int i = 0; i < children.size(); i++)
+                    {
+                    	RtfTreeNode node = children.get(i);
+                    	
+                        res.append(node.getText(raw, uc));
+
+                        if (node.getNodeType() == RtfNodeType.KEYWORD && node.getNodeKey().equals("uc"))
+                            uc = node.getParameter();
+                    }
+                }
+            }
+        }
+        else if (this.getNodeType() == RtfNodeType.CONTROL)
+        {
+            if (this.getNodeKey().equals("'"))
+                res.append(decodeControlChar(this.getParameter(), this.tree.getEncoding()));
+            else if (this.getNodeKey().equals("~"))  // non-breaking space
+                res.append(" ");
+        }
+        else if (this.getNodeType() == RtfNodeType.TEXT)
+        {
+            String newtext = this.getNodeKey();
+
+            //Si el elemento anterior era un caracater Unicode (\\uN) ignoramos los siguientes N caracteres
+            //según la última etiqueta \\ucN
+            if (this.previousNode().getNodeType() == RtfNodeType.KEYWORD &&
+                this.previousNode().getNodeKey().equals("u"))
+            {
+                newtext = newtext.substring(ignoreNchars);
+            }
+
+            res.append(newtext);
+        }
+        else if (this.getNodeType() == RtfNodeType.KEYWORD)
+        {
+            if (this.getNodeKey().equals("par"))
+                res.append("\n");
+            else if (this.getNodeKey().equals("tab"))
+                res.append("\t");
+            else if (this.getNodeKey().equals("line"))
+                res.append("\n");
+            else if (this.getNodeKey().equals("lquote"))
+                res.append("‘");
+            else if (this.getNodeKey().equals("rquote"))
+                res.append("’");
+            else if (this.getNodeKey().equals("ldblquote"))
+                res.append("“");
+            else if (this.getNodeKey().equals("rdblquote"))
+                res.append("”");
+            else if (this.getNodeKey().equals("emdash"))
+                res.append("—");
+            else if (this.getNodeKey().equals("u"))
+            {
+                res.append(Character.toChars(this.getParameter()));
+            }
+        }
+
+        return res.toString();
     }
     
     /**
@@ -1366,6 +1382,31 @@ public class RtfTreeNode
             updateNodeRoot(node);
         }
     }
+       
+    /**
+     * Devuelve el primer nodo hijo cuya palabra clave sea la indicada como parámetro.
+     * @param keyword Palabra clave buscada.
+     * @return Primer nodo hijo cuya palabra clave sea la indicada como parámetro. En caso de no existir se devuelve null.
+     */
+    public RtfTreeNode getChild(String keyword)
+    {
+    	return this.selectSingleChildNode(keyword);
+    }
+    
+    /**
+     * Devuelve el hijo n-ésimo del nodo actual.
+     * @param keyword Índice del nodo hijo a recuperar.
+     * @return Nodo hijo n-ésimo del nodo actual. Devuelve null en caso de no existir.
+     */
+    public RtfTreeNode getChild(int childIndex)
+    {
+    	RtfTreeNode res = null;
+
+        if (children != null && childIndex >= 0 && childIndex < children.size())
+            res = children.get(childIndex);
+
+        return res;
+    }
     
     /**
      * Obtiene el primer nodo hijo del nodo actual.
@@ -1434,35 +1475,37 @@ public class RtfTreeNode
     }
     
     /**
-     * Devuelve el índice del nodo actual dentro de la lista de hijos de su nodo padre.
-     * @return Índice del nodo actual dentro de la lista de hijos de su nodo padre.
+     * Devuelve el nodo siguiente del árbol.
+     * @return Nodo siguiente del árbol.
      */
-    public int getIndex()
+    public RtfTreeNode nextNode()
     {
-    	int res = -1;
+    	RtfTreeNode res = null;
 
-        if(parent != null)
-            res = parent.children.indexOf(this);
+        if (this.getNodeType() == RtfNodeType.ROOT)
+        {
+            res = this.firstChild();
+        }
+        else if (parent != null && parent.children != null)
+        {
+            if (this.getNodeType() == RtfNodeType.GROUP && this.children.size() > 0)
+            {
+                res = this.firstChild();
+            }
+            else
+            {
+                if (this.getIndex() < (parent.children.size() - 1))
+                {
+                    res = this.nextSibling();
+                }
+                else
+                {
+                    res = parent.nextSibling();
+                }
+            }
+        }
 
         return res;
-    }
-    
-    /**
-     * Devuelve el fragmento de texto del documento contenido en el nodo actual.
-     * @return Fragmento de texto del documento contenido en el nodo actual.
-     */
-    public String getText()
-    {
-    	return getTextAux(false);
-    }
-    
-    /**
-     * Devuelve todo el texto contenido en el nodo actual.
-     * @return Texto contenido en el nodo actual.
-     */
-    public String getRawText()
-    {
-    	return getTextAux(true);
     }
     
     /**
@@ -1498,101 +1541,36 @@ public class RtfTreeNode
 
         return res;
     }
-    
+       
     /**
-     * Devuelve el nodo siguiente del árbol.
-     * @return Nodo siguiente del árbol.
+     * Devuelve el índice del nodo actual dentro de la lista de hijos de su nodo padre.
+     * @return Índice del nodo actual dentro de la lista de hijos de su nodo padre.
      */
-    public RtfTreeNode nextNode()
+    public int getIndex()
     {
-    	RtfTreeNode res = null;
+    	int res = -1;
 
-        if (this.getNodeType() == RtfNodeType.ROOT)
-        {
-            res = this.firstChild();
-        }
-        else if (parent != null && parent.children != null)
-        {
-            if (this.getNodeType() == RtfNodeType.GROUP && this.children.size() > 0)
-            {
-                res = this.firstChild();
-            }
-            else
-            {
-                if (this.getIndex() < (parent.children.size() - 1))
-                {
-                    res = this.nextSibling();
-                }
-                else
-                {
-                    res = parent.nextSibling();
-                }
-            }
-        }
+        if(parent != null)
+            res = parent.children.indexOf(this);
 
         return res;
     }
-    
+       
     /**
-     * Obtiene el texto contenido en el nodo actual.
-     * @param raw Si este parámetro está activado se extraerá todo el texto contenido en el nodo, independientemente de si éste forma parte del texto real del documento.
-     * @return Texto extraido del nodo.
+     * Devuelve el fragmento de texto del documento contenido en el nodo actual.
+     * @return Devuelve el fragmento de texto del documento contenido en el nodo actual.
      */
-    private String getTextAux(boolean raw)
+    public String getText()
     {
-        StringBuilder res = new StringBuilder("");
-
-        if (this.getNodeType() == RtfNodeType.GROUP)
-        {
-            int indkw = this.firstChild().getNodeKey().equals("*") ? 1 : 0;
-
-            if (raw ||
-               (!this.getChildNodes().get(indkw).getNodeKey().equals("fonttbl") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("colortbl") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("stylesheet") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("generator") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("info") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("pict") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("object") &&
-                !this.getChildNodes().get(indkw).getNodeKey().equals("fldinst")))
-            {
-                if (getChildNodes() != null)
-                {
-                	for(int i=0; i<getChildNodes().size(); i++)
-                    {
-                		RtfTreeNode node = getChildNodes().get(i);
-                		
-                        res.append(node.getTextAux(raw));
-                    }
-                }
-            }
-        }
-        else if (this.getNodeType() == RtfNodeType.CONTROL)
-        {
-            if (this.getNodeKey().equals("'"))
-                res.append(decodeControlChar(this.getParameter(), this.tree.getEncoding()));
-        }
-        else if (this.getNodeType() == RtfNodeType.TEXT)
-        {
-            res.append(this.getNodeKey());
-        }
-        else if (this.getNodeType() == RtfNodeType.KEYWORD)
-        {
-            if (this.getNodeKey().equals("par"))
-                res.append("\n");
-        }
-
-        return res.toString();
+    	return getText(false);
     }
     
     /**
-     * Decodifica un caracter especial indicado por su código decimal
-     * @param code Código del caracter especial (\')
-     * @param enc Codificación utilizada para decodificar el caracter especial.
-     * @return Caracter especial decodificado.
+     * Devuelve todo el texto contenido en el nodo actual.
+     * @return Devuelve todo el texto contenido en el nodo actual.
      */
-    private static String decodeControlChar(int code, Charset enc)
+    public String getRawText()
     {
-        return enc.decode(ByteBuffer.wrap(new byte[] {(byte)code})).toString();                
+    	return getText(true);
     }
 }
