@@ -49,7 +49,7 @@ import net.sgoliver.jrtftree.util.RtfStyleSheetType;
 /**
  * Reresenta la estructura en forma de árbol de un documento RTF. 
  */
-public class RtfTree
+public class RtfTree //In Sync
 {
 	//Atributos
 	private RtfTreeNode rootNode;
@@ -459,8 +459,6 @@ public class RtfTree
      */
     public Charset getEncoding()
     {
-        //Contributed by Jan Stuchlík
-
     	Charset encoding = Charset.defaultCharset();
 
         RtfTreeNode cpNode = rootNode.selectSingleNode("ansicpg");
@@ -517,7 +515,6 @@ public class RtfTree
 	                case RtfTokenType.TEXT:
 	                	if (mergeSpecialCharacters)
                         {
-                            //Contributed by Jan Stuchlík
                             boolean isText = tok.getTokenType() == RtfTokenType.TEXT || (tok.getTokenType() == RtfTokenType.CONTROL && tok.getKey().equals("'"));
                             if (curNode.lastChild() != null && (curNode.lastChild().getNodeType() == RtfNodeType.TEXT && isText))
                             {
@@ -549,7 +546,6 @@ public class RtfTree
 
                         if (mergeSpecialCharacters)
                         {
-                            //Contributed by Jan Stuchlík
                             if (level == 1 && newNode.getNodeType() == RtfNodeType.KEYWORD && newNode.getNodeKey().equals("ansicpg"))
                             {
                                 encoding = Charset.forName("Cp" + newNode.getParameter());
@@ -683,65 +679,21 @@ public class RtfTree
      */
     private String convertToText()
     {
+    	StringBuilder res = new StringBuilder("");
+    	
+    	RtfTreeNode mainGroup = this.getMainGroup();
+
         RtfTreeNode pardNode =
-            this.rootNode.firstChild().selectSingleChildNode("pard");
+        		mainGroup.selectSingleChildNode("pard");
 
-        int pPard = this.rootNode.firstChild().getChildNodes().indexOf(pardNode);
-
-        Charset enc = this.getEncoding();
-
-        return convertToTextAux(this.rootNode.firstChild(), pPard, enc);
-    }
-    
-    /**
-     * Extrae el texto de un nodo RTF (Auxiliar de ConvertToText())
-     * @param curNode Nodo actual.
-     * @param prim Nodo a partir del que convertir.
-     * @param enc Codificación del documento.
-     * @return Texto plano del documento.
-     */
-    private String convertToTextAux(RtfTreeNode curNode, int prim, Charset enc)
-    {
-        StringBuilder res = new StringBuilder("");
-
-        RtfTreeNode nprin = curNode;
-
-        RtfTreeNode nodo = new RtfTreeNode();
-
-        for (int i = prim; i < nprin.getChildNodes().size(); i++)
+        for (int i = pardNode.getIndex(); i < mainGroup.getChildNodes().size(); i++)
         {
-            nodo = nprin.getChildNodes().get(i);
-
-            if (nodo.getNodeType() == RtfNodeType.GROUP)
-            {
-                int indkw = nodo.firstChild().getNodeKey().equals("*") ? 1 : 0;
-
-                if (!nodo.getChildNodes().get(indkw).getNodeKey().equals("pict") &&
-                    !nodo.getChildNodes().get(indkw).getNodeKey().equals("object") &&
-                    !nodo.getChildNodes().get(indkw).getNodeKey().equals("fldinst"))
-                {
-                    res.append(convertToTextAux(nodo, 0, enc));
-                }
-            }
-            else if (nodo.getNodeType() == RtfNodeType.CONTROL)
-            {
-                if (nodo.getNodeKey().equals("'"))
-                    res.append(decodeControlChar(nodo.getParameter(), enc));
-            }
-            else if (nodo.getNodeType() == RtfNodeType.TEXT)
-            {
-                res.append(nodo.getNodeKey());
-            }
-            else if (nodo.getNodeType() == RtfNodeType.KEYWORD)
-            {
-                if (nodo.getNodeKey().equals("par"))
-                    res.append("\r\n");
-            }
+            res.append(mainGroup.getChildNodes().get(i).getText());
         }
 
         return res.toString();
     }
-    
+      
     private RtfStyleSheet ParseStyleSheet(RtfTreeNode ssnode)
     {
         RtfStyleSheet rss = new RtfStyleSheet();
