@@ -32,6 +32,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 
 /**
  * Pull parser para documentos RTF.
@@ -59,19 +60,47 @@ public class RtfPullParser
 
     /**
      * Constructor de la clase.
+     */
+    public RtfPullParser(String path)
+    {
+        currentEvent = START_DOCUMENT;
+    }
+    
+    /**
+     * Carga un fichero en formato RTF
      * @param path Ruta del fichero a parsear.
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public RtfPullParser(String path) throws FileNotFoundException, IOException
+    public int loadRtfFile(String path) throws FileNotFoundException, IOException
     {
+    	int res = 0;
+    	
         //Se abre el fichero de entrada
         rtf = new FileReader(path);
 
         //Se crea el analizador léxico para RTF
         lex = new RtfLex(rtf);
 
-        currentEvent = START_DOCUMENT;
+        return res;
+    }
+    
+    /**
+     * Carga una cadena de Texto con formato RTF.
+     * @param text Cadena de Texto que contiene el documento.
+     * @throws IOException
+     */
+    public int loadRtfText(String text) throws IOException
+    {
+    	int res = 0;
+    	
+        //Se abre el fichero de entrada
+        rtf = new StringReader(text);
+
+        //Se crea el analizador léxico para RTF
+        lex = new RtfLex(rtf);
+
+        return res;
     }
 
     //Métodos Públicos
