@@ -142,12 +142,21 @@ public class RtfMerger //In Sync
     }
     
     /**
-     * Obtiene o establece el árbol RTF del documento plantilla.
+     * Obtiene el árbol RTF del documento plantilla.
      * @return Árbol RTF del documento plantilla.
      */
     public RtfTree getTemplate()
     {
     	return baseRtfDoc;
+    }
+    
+    /**
+     * Establece el árbol RTF del documento plantilla.
+     * @return Árbol RTF del documento plantilla.
+     */
+    public void setTemplate(RtfTree template)
+    {
+    	baseRtfDoc = template;
     }
 
     /**

@@ -38,7 +38,7 @@ import net.sgoliver.jrtftree.core.RtfTree;
 
 import org.junit.Test;
 
-public class LoadRtfTest 
+public class LoadRtfTest //In Sync
 {
 	@Test
 	public void loadSimpleDocFromFile()

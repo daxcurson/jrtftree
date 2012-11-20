@@ -40,7 +40,7 @@ import net.sgoliver.jrtftree.core.RtfTree;
 import org.junit.Test;
 
 
-public class MergeTest 
+public class MergeTest //In Sync
 {
 	@Test
 	public void MergeDocuments() 
@@ -63,14 +63,63 @@ public class MergeTest
 		
 		try
 		{
-			tree.saveRtf("test\\testdocs\\merge-result.rtf");
+			tree.saveRtf("test\\testdocs\\merge-result-1.rtf");
 		}
 		catch(IOException ex)
 		{
 			;
 		}
 
-		String rtf1 = leerFichero("test\\testdocs\\merge-result.rtf");
+		String rtf1 = leerFichero("test\\testdocs\\merge-result-1.rtf");
+		String rtf3 = leerFichero("test\\testdocs\\rtf3.txt");
+
+		assertEquals(rtf3.trim(), rtf1.trim());
+	}
+	
+	@Test
+	public void MergeDocumentsInMemory() 
+	{
+		RtfMerger merger = new RtfMerger();
+		
+		RtfTree tree = new RtfTree();
+		tree.loadRtfFile("test\\testdocs\\merge-template.rtf");
+		
+		merger.setTemplate(tree);
+		
+		RtfTree ph1 = new RtfTree();
+        ph1.loadRtfFile("test\\testdocs\\merge-doc1.rtf");
+
+        RtfTree ph2 = new RtfTree();
+        ph2.loadRtfFile("test\\testdocs\\merge-doc2.rtf");
+		
+		merger.addPlaceHolder("$doc1$", ph1);
+		merger.addPlaceHolder("$doc2$", ph2);
+
+		assertEquals(merger.getPlaceholders().size(), 2);
+
+		RtfTree ph3 = new RtfTree();
+        ph3.loadRtfFile("test\\testdocs\\merge-doc2.rtf");
+		
+		merger.addPlaceHolder("$doc3$", ph3);
+
+		assertEquals(merger.getPlaceholders().size(), 3);
+
+		merger.removePlaceHolder("$doc3$");
+
+		assertEquals(merger.getPlaceholders().size(), 2);
+
+		RtfTree resTree = merger.merge();
+		
+		try
+		{
+			resTree.saveRtf("test\\testdocs\\merge-result-2.rtf");
+		}
+		catch(IOException ex)
+		{
+			;
+		}
+
+		String rtf1 = leerFichero("test\\testdocs\\merge-result-2.rtf");
 		String rtf3 = leerFichero("test\\testdocs\\rtf3.txt");
 
 		assertEquals(rtf3.trim(), rtf1.trim());

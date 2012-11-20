@@ -46,7 +46,7 @@ import net.sgoliver.jrtftree.util.RtfStyleSheetType;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HeaderSectionsTest 
+public class HeaderSectionsTest //In Sync
 {
 	private static RtfTree tree = null;
 	
