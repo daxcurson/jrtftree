@@ -48,7 +48,7 @@ public class RtfDocumentTest
 	@Test
 	public void CreateSimpleDocument() 
 	{
-		RtfDocument doc = new RtfDocument("test\\testdocs\\rtfdocument.rtf");
+		RtfDocument doc = new RtfDocument();
 
 		RtfCharFormat charFormat = new RtfCharFormat();
 		charFormat.setColor(new Color(0,0,139));
@@ -103,7 +103,12 @@ public class RtfDocumentTest
 		doc.addNewLine(2);
 		doc.addText("Stop.");
 
-		doc.close();
+		try
+		{
+			doc.save("test\\testdocs\\rtfdocument.rtf");
+		}
+		catch(Exception ex)
+		{ ; }
 
 		String rtf1 = leerFichero("test\\testdocs\\rtfdocument.rtf");
 		String rtf4 = leerFichero("test\\testdocs\\rtf4.txt");

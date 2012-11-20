@@ -42,13 +42,11 @@ import net.sgoliver.jrtftree.core.RtfNodeType;
 import net.sgoliver.jrtftree.core.RtfTree;
 import net.sgoliver.jrtftree.core.RtfTreeNode;
 
-public class RtfDocument 
+public class RtfDocument //In Sync
 {
-    private String path;
     private Charset encoding;
     private RtfFontTable fontTable;
     private RtfColorTable colorTable;
-    private RtfTree tree;
     private RtfTreeNode mainGroup;
     private RtfCharFormat currentFormat;
     private RtfParFormat currentParFormat;
@@ -56,12 +54,10 @@ public class RtfDocument
     
     /**
      * Constructor de la clase RtfDocument.
-     * @param path Ruta del fichero a generar.
      * @param enc Codificación del documento a generar.
      */
-    public RtfDocument(String path, Charset enc)
+    public RtfDocument(Charset enc)
     {
-        this.path = path;
         this.encoding = enc;
 
         fontTable = new RtfFontTable();
@@ -74,7 +70,6 @@ public class RtfDocument
         currentParFormat = new RtfParFormat();
         docFormat = new RtfDocumentFormat();
 
-        tree = new RtfTree();
         mainGroup = new RtfTreeNode(RtfNodeType.GROUP);
 
         initializeTree();
@@ -82,34 +77,21 @@ public class RtfDocument
 
     /**
      * Constructor de la clase RtfDocument. Se utilizará la codificación por defecto del sistema.
-     * @param path Ruta del fichero a generar.
      */
-    public RtfDocument(String path)
+    public RtfDocument()
     {
-    	this(path, Charset.defaultCharset());
+    	this(Charset.defaultCharset());
     }
     
     /**
-     * Cierra el documento RTF.
+     * Guarda el documento como fichero RTF en la ruta indicada.
+     * @param path Ruta del fichero a crear.
      */
-    public void close()
+    public void save(String path) throws IOException
     {
-        insertFontTable();
-        insertColorTable();
-        insertGenerator();
-        insertDocSettings();
-
-        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "par", false, 0));
-        tree.getRootNode().appendChild(mainGroup);
-
-        try
-        {
-        	tree.saveRtf(path);
-        }
-        catch(IOException ex)
-        {
-        	;
-        }
+    	RtfTree tree = GetTree();
+    	
+    	tree.saveRtf(path);
     }
     
     /**
@@ -498,14 +480,58 @@ public class RtfDocument
     }
     
     /**
+     * Obtiene el texto plano contenido en el documento RTF.
+     * @return Texto plano contenido en el documento RTF.
+     */
+    public String getText()
+    {
+    	return GetTree().getText();
+    }
+    
+    /**
+     * Obtiene el código RTF del documento RTF.
+     * @return Código RTF del documento RTF.
+     */
+    public String getRtf()
+    {
+    	return GetTree().getRtf();
+    }
+    
+    /**
+     * Obtiene el árbol RTF del documento actual.
+     * @return Arbol RTF del documento actual.
+     */
+    public RtfTree getTree()
+    {
+    	return GetTree();
+    }
+    
+    /**
+     * Obtiene el árbol RTF equivalente al documento actual.
+     * @return Árbol RTF equivalente al documento en el estado actual.
+     */
+    private RtfTree GetTree()
+    {
+        RtfTree tree = new RtfTree();
+        tree.getRootNode().appendChild(mainGroup.cloneNode());
+
+        insertFontTable(tree);
+        insertColorTable(tree);
+        insertGenerator(tree);
+        insertDocSettings(tree);
+
+        tree.getMainGroup().appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "par", false, 0));
+
+        return tree;
+    }
+    
+    /**
      * Obtiene el código hexadecimal de un entero.
      * @param code Número entero.
      * @return Código hexadecimal del entero pasado como parámetro.
      */
     private String getHexa(int code)
     {
-        //Contributed by Jan Stuchlík
-
         String hexa = Integer.toHexString(code);
 
         if (hexa.length() == 1)
@@ -519,7 +545,7 @@ public class RtfDocument
     /**
      * Inserta el código RTF de la tabla de fuentes en el documento.
      */
-    private void insertFontTable()
+    private void insertFontTable(RtfTree tree)
     {
         RtfTreeNode ftGroup = new RtfTreeNode(RtfNodeType.GROUP);
         
@@ -535,13 +561,13 @@ public class RtfDocument
             ftGroup.appendChild(ftFont);
         }
 
-        mainGroup.insertChild(5, ftGroup);
+        tree.getMainGroup().insertChild(5, ftGroup);
     }
     
     /**
      * Inserta el código RTF de la tabla de colores en el documento.
      */
-    private void insertColorTable()
+    private void insertColorTable(RtfTree tree)
     {
         RtfTreeNode ctGroup = new RtfTreeNode(RtfNodeType.GROUP);
 
@@ -555,21 +581,21 @@ public class RtfDocument
             ctGroup.appendChild(new RtfTreeNode(RtfNodeType.TEXT, ";", false, 0));
         }
 
-        mainGroup.insertChild(6, ctGroup);
+        tree.getMainGroup().insertChild(6, ctGroup);
     }
     
     /**
      * Inserta el código RTF de la aplicación generadora del documento.
      */
-    private void insertGenerator()
+    private void insertGenerator(RtfTree tree)
     {
         RtfTreeNode genGroup = new RtfTreeNode(RtfNodeType.GROUP);
 
         genGroup.appendChild(new RtfTreeNode(RtfNodeType.CONTROL, "*", false, 0));
         genGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "generator", false, 0));
-        genGroup.appendChild(new RtfTreeNode(RtfNodeType.TEXT, "NRtfTree Library 1.3.0;", false, 0));
+        genGroup.appendChild(new RtfTreeNode(RtfNodeType.TEXT, "NRtfTree Library 0.3.0;", false, 0));
 
-        mainGroup.insertChild(7, genGroup);
+        tree.getMainGroup().insertChild(7, genGroup);
     }
     
     /**
@@ -602,10 +628,29 @@ public class RtfDocument
                 mainGroup.appendChild(new RtfTreeNode(RtfNodeType.TEXT, s.toString(), false, 0));
             }
             else
-            {
-                ByteBuffer bytes = encoding.encode(("" + text.charAt(i)));
+            {           	
+            	if (text.charAt(i) == '\t')
+                {
+                    mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "tab", false, 0));
+                }
+                else if (text.charAt(i) == '\n')
+                {
+                    mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "line", false, 0));
+                }
+                else
+                {
+                    if (code <= 255)
+                    {
+                    	ByteBuffer bytes = encoding.encode(("" + text.charAt(i)));
 
-                mainGroup.appendChild(new RtfTreeNode(RtfNodeType.CONTROL, "'", true, bytes.get(0)));
+                        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.CONTROL, "'", true, bytes.get(0)));
+                    }
+                    else
+                    {
+                        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "u", true, code));
+                        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.TEXT, "?", false, 0));
+                    }
+                }
 
                 i++;
             }
@@ -643,9 +688,9 @@ public class RtfDocument
     {
         mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "rtf", true, 1));
         mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "ansi", false, 0));
-        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "ansicpg", true, 1252));
+        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "ansicpg", true, 1252)); //encoding.CodePage
         mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "deff", true, 0));
-        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "deflang", true, 3082));
+        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "deflang", true, 3082)); //CultureInfo.CurrentCulture.LCID
 
         mainGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "pard", false, 0));
     }
@@ -653,21 +698,21 @@ public class RtfDocument
     /// <summary>
     /// Inserta las propiedades de formato del documento
     /// </summary>
-    private void insertDocSettings()
+    private void insertDocSettings(RtfTree tree)
     {
-        int indInicioTexto = mainGroup.getChildNodes().indexOf("pard");
+        int indInicioTexto = tree.getMainGroup().getChildNodes().indexOf("pard");
 
         //Generic Properties
         
-        mainGroup.insertChild(indInicioTexto, new RtfTreeNode(RtfNodeType.KEYWORD, "viewkind", true, 4));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "uc", true, 1));
+        tree.getMainGroup().insertChild(indInicioTexto, new RtfTreeNode(RtfNodeType.KEYWORD, "viewkind", true, 4));
+        tree.getMainGroup().insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "uc", true, 1));
 
         //RtfDocumentFormat Properties
 
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margl", true, calcTwips(docFormat.getMarginL())));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margr", true, calcTwips(docFormat.getMarginR())));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margt", true, calcTwips(docFormat.getMarginT())));
-        mainGroup.insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margb", true, calcTwips(docFormat.getMarginB())));
+        tree.getMainGroup().insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margl", true, calcTwips(docFormat.getMarginL())));
+        tree.getMainGroup().insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margr", true, calcTwips(docFormat.getMarginR())));
+        tree.getMainGroup().insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margt", true, calcTwips(docFormat.getMarginT())));
+        tree.getMainGroup().insertChild(indInicioTexto++, new RtfTreeNode(RtfNodeType.KEYWORD, "margb", true, calcTwips(docFormat.getMarginB())));
     }
 
     /// <summary>
