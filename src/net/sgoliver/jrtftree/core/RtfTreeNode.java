@@ -1205,11 +1205,11 @@ public class RtfTreeNode //In Sync
         else if (this.getNodeType() == RtfNodeType.KEYWORD)
         {
             if (this.getNodeKey().equals("par"))
-                res.append("\n");
+                res.append(System.getProperty("line.separator"));
             else if (this.getNodeKey().equals("tab"))
                 res.append("\t");
             else if (this.getNodeKey().equals("line"))
-                res.append("\n");
+                res.append(System.getProperty("line.separator"));
             else if (this.getNodeKey().equals("lquote"))
                 res.append("‘");
             else if (this.getNodeKey().equals("rquote"))

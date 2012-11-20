@@ -37,7 +37,7 @@ import java.io.StringReader;
 /**
  * Pull parser para documentos RTF.
  */
-public class RtfPullParser 
+public class RtfPullParser //In Sync
 {
     //Constantes
 
