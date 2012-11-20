@@ -34,7 +34,7 @@ import java.util.Hashtable;
 import net.sgoliver.jrtftree.util.RtfColorTable;
 import net.sgoliver.jrtftree.util.RtfFontTable;
 
-public class RtfMerger 
+public class RtfMerger //In Sync
 {
     private RtfTree baseRtfDoc = null;
     private boolean removeLastPar;
@@ -43,18 +43,23 @@ public class RtfMerger
 
     /**
      * Constructor de la clase RtfMerger. 
-     * @param sSourceDocFullPathName Ruta del documento plantilla.
-     * @param bolRemoveLastParCmd Indica si se debe eliminar el último nodo \par de los documentos insertados en la plantilla.
+     * @param templatePath Ruta del documento plantilla.
      */
-    public RtfMerger(String sSourceDocFullPathName, boolean bolRemoveLastParCmd)
+    public RtfMerger(String templatePath)
     {
         //Se carga el documento origen
         baseRtfDoc = new RtfTree();
-        baseRtfDoc.loadRtfFile(sSourceDocFullPathName);
+        baseRtfDoc.loadRtfFile(templatePath);
 
-        //Indicativo de eliminación del último nodo \par para documentos insertados
-        removeLastPar = bolRemoveLastParCmd;
-
+        //Se crea la lista de parámetros de sustitución (placeholders)
+        placeHolder = new Hashtable<String, RtfTree>();
+    }
+    
+    /**
+     * Constructor por defecto de la clase RtfMerger. 
+     */
+    public RtfMerger()
+    {
         //Se crea la lista de parámetros de sustitución (placeholders)
         placeHolder = new Hashtable<String, RtfTree>();
     }
@@ -75,6 +80,16 @@ public class RtfMerger
             placeHolder.put(ph, tree);
         }
     }
+    
+    /**
+     * Asocia un nuevo parámetro de sustitución (placeholder) con el documento a insertar. 
+     * @param ph Nombre del placeholder.
+     * @param docTree Árbol RTF del documento a insertar.
+     */
+    public void addPlaceHolder(String ph, RtfTree docTree)
+    {
+    	placeHolder.put(ph, docTree);
+    }
 
     /**
      * Desasocia un parámetro de sustitución (placeholder) con la ruta del documento a insertar.
@@ -87,10 +102,14 @@ public class RtfMerger
 
     /**
      * Realiza la combinación de los documentos RTF.
+     * @param removeLastPar Indica si se debe eliminar el último nodo \par de los documentos insertados en la plantilla.
      * @return Devuelve el árbol RTF resultado de la fusión.
      */
-    public RtfTree merge()
+    public RtfTree merge(boolean removeLastPar)
     {
+    	//Indicativo de eliminación del último nodo \par para documentos insertados
+        this.removeLastPar = removeLastPar;
+        
         //Se obtiene el grupo principal del árbol
         RtfTreeNode parentNode = baseRtfDoc.getMainGroup();
 
@@ -103,6 +122,15 @@ public class RtfMerger
 
         return baseRtfDoc;
     }
+    
+    /**
+     * Realiza la combinación de los documentos RTF.
+     * @return Devuelve el árbol RTF resultado de la fusión.
+     */
+    public RtfTree merge()
+    {
+    	return merge(true);
+    }
 
     /**
      * Devuelve la lista de parámetros de sustitución con el formato: [string, RtfTree]
@@ -111,6 +139,15 @@ public class RtfMerger
     public Hashtable<String, RtfTree> getPlaceholders()
     {
     	return placeHolder;
+    }
+    
+    /**
+     * Obtiene o establece el árbol RTF del documento plantilla.
+     * @return Árbol RTF del documento plantilla.
+     */
+    public RtfTree getTemplate()
+    {
+    	return baseRtfDoc;
     }
 
     /**

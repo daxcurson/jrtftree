@@ -45,7 +45,7 @@ public class MergeTest
 	@Test
 	public void MergeDocuments() 
 	{
-		RtfMerger merger = new RtfMerger("test\\testdocs\\merge-template.rtf", true);
+		RtfMerger merger = new RtfMerger("test\\testdocs\\merge-template.rtf");
 		merger.addPlaceHolder("$doc1$", "test\\testdocs\\merge-doc1.rtf");
 		merger.addPlaceHolder("$doc2$", "test\\testdocs\\merge-doc2.rtf");
 
