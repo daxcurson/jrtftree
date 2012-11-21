@@ -33,6 +33,7 @@ import static org.junit.Assert.*;
 import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Scanner;
 
 import net.sgoliver.jrtftree.util.RtfCharFormat;
@@ -43,12 +44,12 @@ import net.sgoliver.jrtftree.util.TextAlignment;
 import org.junit.Test;
 
 
-public class RtfDocumentTest 
+public class RtfDocumentTest //In Sync
 {
 	@Test
 	public void CreateSimpleDocument() 
 	{
-		RtfDocument doc = new RtfDocument();
+		RtfDocument doc = new RtfDocument(Charset.forName("Cp1252"));
 
 		RtfCharFormat charFormat = new RtfCharFormat();
 		charFormat.setColor(new Color(0,0,139));
@@ -72,9 +73,19 @@ public class RtfDocumentTest
 		doc.addText("Donec ac leo justo, vitae rutrum elit. Nulla tellus elit, imperdiet luctus porta vel, consectetur quis turpis. Nam purus odio, dictum vitae sollicitudin nec, tempor eget mi.");
 		doc.addText("Etiam vitae porttitor enim. Aenean molestie facilisis magna, quis tincidunt leo placerat in. Maecenas malesuada eleifend nunc vitae cursus.");
 		doc.addNewParagraph(2);
-
-		doc.addText("Second Paragraph", charFormat);
-		doc.addNewParagraph(2);
+	
+		try
+		{
+			doc.save("test\\testdocs\\rtfdocument1.rtf");
+		}
+		catch(IOException ex)
+		{ ; }
+		
+		String text1 = doc.getText();
+        String rtfcode1 = doc.getRtf();
+        
+        doc.addText("Second Paragraph", charFormat);
+        doc.addNewParagraph(2);
 
 		charFormat.setFont("Courier New");
 		charFormat.setColor(new Color(0,128,0));
@@ -99,21 +110,40 @@ public class RtfDocumentTest
 
 		doc.setLeftIndentation(0);
 
-		doc.addText("Test Doc.");
-		doc.addNewLine(2);
-		doc.addText("Stop.");
+		doc.addText("Test Doc. Петяв ñáéíó\n");
+        doc.addNewLine(1);
+        doc.addText("\tStop.");
+        
+        String text2 = doc.getText();
+        String rtfcode2 = doc.getRtf();
 
 		try
 		{
-			doc.save("test\\testdocs\\rtfdocument.rtf");
+			doc.save("test\\testdocs\\rtfdocument2.rtf");
 		}
 		catch(Exception ex)
 		{ ; }
 
-		String rtf1 = leerFichero("test\\testdocs\\rtfdocument.rtf");
+		String rtf1 = leerFichero("test\\testdocs\\rtfdocument1.rtf");
+		String rtf2 = leerFichero("test\\testdocs\\rtfdocument2.rtf");
 		String rtf4 = leerFichero("test\\testdocs\\rtf4.txt");
+		String rtf6 = leerFichero("test\\testdocs\\rtf6.txt");
+		String doctext1 = leerFichero("test\\testdocs\\doctext1.txt");
+		String doctext2 = leerFichero("test\\testdocs\\doctext2.txt").trim() + " Петяв ñáéíó\r\n\r\n\tStop.\r\n";
 
-		assertEquals(rtf4.trim(), rtf1.trim());
+		//Se adapta el lenguaje al del PC donde se ejecutan los tests
+        //int deflangInd = rtf4.IndexOf("\\deflang3082");
+        //rtf4 = rtf4.Substring(0, deflangInd) + "\\deflang" + CultureInfo.CurrentCulture.LCID + rtf4.Substring(deflangInd + 8 + CultureInfo.CurrentCulture.LCID.ToString().Length);
+
+        //Se adapta el lenguaje al del PC donde se ejecutan los tests
+        //int deflangInd2 = rtf6.IndexOf("\\deflang3082");
+        //rtf6 = rtf6.Substring(0, deflangInd2) + "\\deflang" + CultureInfo.CurrentCulture.LCID + rtf6.Substring(deflangInd2 + 8 + CultureInfo.CurrentCulture.LCID.ToString().Length);
+		
+		assertEquals(rtf6.trim(), rtf1.trim());
+		assertEquals(rtf4.trim(), rtf2.trim());
+		
+		assertEquals(doctext1.trim(), text1.trim());
+		assertEquals(doctext2.trim(), text2.trim());
 	}
 	
 	private String leerFichero(String path)

@@ -37,7 +37,7 @@ import net.sgoliver.jrtftree.core.RtfNodeType;
 import net.sgoliver.jrtftree.core.RtfTreeNode;
 
 
-public class NodeCollectionTest 
+public class NodeCollectionTest //In Sync
 {
     @Test
      public void populateCollection()

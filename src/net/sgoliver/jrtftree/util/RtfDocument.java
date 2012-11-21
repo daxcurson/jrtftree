@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
 import javax.imageio.ImageIO;
@@ -80,7 +81,7 @@ public class RtfDocument //In Sync
      */
     public RtfDocument()
     {
-    	this(Charset.defaultCharset());
+    	this(Charset.forName("Cp1252"));
     }
     
     /**
@@ -641,9 +642,9 @@ public class RtfDocument //In Sync
                 {
                     if (code <= 255)
                     {
-                    	ByteBuffer bytes = encoding.encode(("" + text.charAt(i)));
+                    	ByteBuffer bytes = encoding.encode(CharBuffer.wrap(text, i, i+1));
 
-                        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.CONTROL, "'", true, bytes.get(0)));
+                        mainGroup.appendChild(new RtfTreeNode(RtfNodeType.CONTROL, "'", true, bytes.get(0) & 0xff));  //"& 0xff" para evitar bytes negativos
                     }
                     else
                     {

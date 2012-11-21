@@ -36,7 +36,7 @@ import net.sgoliver.jrtftree.core.RtfNodeType;
 import net.sgoliver.jrtftree.core.RtfTree;
 import net.sgoliver.jrtftree.core.RtfTreeNode;
 
-public class NavigationTest 
+public class NavigationTest //In Sync
 {
 	@Test
 	public void emptyNodeNavigation() 
