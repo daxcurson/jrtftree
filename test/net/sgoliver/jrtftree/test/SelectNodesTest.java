@@ -42,7 +42,7 @@ import net.sgoliver.jrtftree.core.RtfTree;
 import net.sgoliver.jrtftree.core.RtfTreeNode;
 
 
-public class SelectNodesTest 
+public class SelectNodesTest //In Sync
 {
 	@Test
      public void selectChildNodesByType()

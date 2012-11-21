@@ -61,7 +61,7 @@ public class RtfPullParser //In Sync
     /**
      * Constructor de la clase.
      */
-    public RtfPullParser(String path)
+    public RtfPullParser()
     {
         currentEvent = START_DOCUMENT;
     }

@@ -82,7 +82,7 @@ public class RtfDocumentTest //In Sync
 		{ ; }
 		
 		String text1 = doc.getText();
-        String rtfcode1 = doc.getRtf();
+        //String rtfcode1 = doc.getRtf();
         
         doc.addText("Second Paragraph", charFormat);
         doc.addNewParagraph(2);
@@ -115,7 +115,7 @@ public class RtfDocumentTest //In Sync
         doc.addText("\tStop.");
         
         String text2 = doc.getText();
-        String rtfcode2 = doc.getRtf();
+        //String rtfcode2 = doc.getRtf();
 
 		try
 		{

@@ -36,7 +36,7 @@ import net.sgoliver.jrtftree.core.RtfTreeNode;
 import org.junit.Test;
 
 
-public class RtfTreeNodeTest 
+public class RtfTreeNodeTest //In Sync
 {
 	@Test
 	public void addChildToEmptyNode() {
@@ -84,7 +84,7 @@ public class RtfTreeNodeTest
 				"blue1 luctus. Fusce in interdum ipsum. Cum sociis natoque penatibus et italic1 dis parturient montes, nascetur ridiculus mus.", 
 				nestedGroups.getText());
 		assertEquals("", keyword.getText());
-		assertEquals("�", control.getText());
+		assertEquals("é", control.getText());
 		assertEquals("", root.getText());
 
 		assertEquals("underline1", simpleGroup.getRawText());
@@ -92,7 +92,7 @@ public class RtfTreeNodeTest
 				"blue1 luctus. Fusce in interdum ipsum. Cum sociis natoque penatibus et italic1 dis parturient montes, nascetur ridiculus mus.",
 				nestedGroups.getRawText());
 		assertEquals("", keyword.getRawText());
-		assertEquals("�", control.getRawText());
+		assertEquals("é", control.getRawText());
 		assertEquals("", root.getRawText());
 
 		RtfTreeNode fontsGroup = tree.getMainGroup().selectSingleGroup("fonttbl");
@@ -104,4 +104,25 @@ public class RtfTreeNodeTest
 		assertEquals("Times New Roman;Arial;Arial;", fontsGroup.getRawText());
 		assertEquals("Msftedit 5.41.15.1515;", generatorGroup.getRawText());
 	}
+	
+	@Test
+	public void textExtractionSpecial() {
+		RtfTree tree = new RtfTree();
+
+        tree.loadRtfFile("test\\testdocs\\testdoc5.rtf");
+
+        assertEquals("Esto es una ‘prueba’\r\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getText());
+        assertEquals("Esto es una ‘prueba’\r\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getMainGroup().getText());
+        assertEquals("Arial;Msftedit 5.41.15.1515;Esto es una ‘prueba’\r\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getMainGroup().getRawText());
+	}
+	
+	@Test
+    public void textExtractionUnicode()
+    {
+        RtfTree tree = new RtfTree();
+
+        tree.loadRtfFile("test\\testdocs\\unicodedoc.rtf");
+
+        assertEquals("Prueba Unicode: Вова Петя\r\nSin ignorar caracteres: Вова Петя\r\n", tree.getText());
+    }
 }
