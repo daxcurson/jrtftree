@@ -56,6 +56,19 @@ public class RtfMerger //In Sync
     }
     
     /**
+     * Constructor de la clase RtfMerger. 
+     * @param templateTree Árbol RTF del documento plantilla.
+     */
+    public RtfMerger(RtfTree templateTree)
+    {
+        //Se carga el documento origen
+        baseRtfDoc = templateTree;
+
+        //Se crea la lista de parámetros de sustitución (placeholders)
+        placeHolder = new Hashtable<String, RtfTree>();
+    }
+    
+    /**
      * Constructor por defecto de la clase RtfMerger. 
      */
     public RtfMerger()
