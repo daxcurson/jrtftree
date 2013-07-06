@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfNodeCollection
- * Description:	Representa un documento RTF en forma de ·rbol.
+ * Description:	Representa un documento RTF en forma de √°rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -31,14 +31,14 @@ package net.sgoliver.jrtftree.core;
 import java.util.ArrayList;
 
 /**
- * ColecciÛn de nodos de un documento RTF. 
+ * Colecci√≥n de nodos de un documento RTF. 
  */
 public class RtfNodeCollection //In Sync
 {
 	private ArrayList<RtfTreeNode> collection;
 	
 	/**
-	 * Constructor de la colecciÛn. 
+	 * Constructor de la colecci√≥n. 
 	 */
 	public RtfNodeCollection()
 	{
@@ -46,9 +46,9 @@ public class RtfNodeCollection //In Sync
 	}
 	
 	/**
-	 * AÒade un nuevo nodo a la colecciÛn actual.
-	 * @param node Nuevo nodo a aÒadir.
-	 * @return PosiciÛn en la que se ha insertado el nuevo nodo.
+	 * A√±ade un nuevo nodo a la colecci√≥n actual.
+	 * @param node Nuevo nodo a a√±adir.
+	 * @return Posici√≥n en la que se ha insertado el nuevo nodo.
 	 */
     public int add(RtfTreeNode node)
     {
@@ -58,8 +58,8 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Inserta un nuveo nodo en una posiciÛn determinada de la colecciÛn.
-     * @param index PosiciÛn en la que insertar el nodo.
+     * Inserta un nuveo nodo en una posici√≥n determinada de la colecci√≥n.
+     * @param index Posici√≥n en la que insertar el nodo.
      * @param node Nuevo nodo a insertar.
      */
     public void insert(int index, RtfTreeNode node)
@@ -68,9 +68,9 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Obtiene un elemento de la colecciÛn.
+     * Obtiene un elemento de la colecci√≥n.
      * @param index Indice del nodo a obtener.
-     * @return Devuelve el nodo que ocupa la posiciÛn 'index' dentro de la colecciÛn.
+     * @return Devuelve el nodo que ocupa la posici√≥n 'index' dentro de la colecci√≥n.
      */
     public RtfTreeNode get(int index)
     {
@@ -78,7 +78,7 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Asigna un elemento de la colecciÛn.
+     * Asigna un elemento de la colecci√≥n.
      * @param index Indice del nodo a asignar.
      * @param node Nodo a asignar.
      */
@@ -88,9 +88,9 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Devuelve el Ìndice del nodo pasado como par·metro dentro de la lista de nodos de la colecciÛn.
-     * @param node Nodo a buscar en la colecciÛn.
-     * @return Indice del nodo buscado. Devolver· el valor -1 en caso de no encontrarse el nodo dentro de la colecciÛn.
+     * Devuelve el √≠ndice del nodo pasado como par√°metro dentro de la lista de nodos de la colecci√≥n.
+     * @param node Nodo a buscar en la colecci√≥n.
+     * @return Indice del nodo buscado. Devolver√° el valor -1 en caso de no encontrarse el nodo dentro de la colecci√≥n.
      */
     public int indexOf(RtfTreeNode node)
     {
@@ -98,10 +98,10 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Devuelve el Ìndice del nodo pasado como par·metro dentro de la lista de nodos de la colecciÛn.
-     * @param node Nodo a buscar en la colecciÛn.
-     * @param startIndex PosiciÛn dentro de la colecciÛn a partir del que se buscar·.
-     * @return Indice del nodo buscado. Devolver· el valor -1 en caso de no encontrarse el nodo dentro de la colecciÛn.
+     * Devuelve el √≠ndice del nodo pasado como par√°metro dentro de la lista de nodos de la colecci√≥n.
+     * @param node Nodo a buscar en la colecci√≥n.
+     * @param startIndex Posici√≥n dentro de la colecci√≥n a partir del que se buscar√°.
+     * @return Indice del nodo buscado. Devolver√° el valor -1 en caso de no encontrarse el nodo dentro de la colecci√≥n.
      */
     public int indexOf(RtfTreeNode node, int startIndex)
     {
@@ -120,9 +120,9 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Devuelve el Ìndice del primer nodo de la colecciÛn cuya clave sea la pasada como par·metro.
-     * @param key Clave a buscar en la colecciÛn.
-     * @return Indice del nodo buscado. Devolver· el valor -1 en caso de no encontrarse el nodo dentro de la colecciÛn.
+     * Devuelve el √≠ndice del primer nodo de la colecci√≥n cuya clave sea la pasada como par√°metro.
+     * @param key Clave a buscar en la colecci√≥n.
+     * @return Indice del nodo buscado. Devolver√° el valor -1 en caso de no encontrarse el nodo dentro de la colecci√≥n.
      */
     public int indexOf(String key)
     {
@@ -144,10 +144,10 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Devuelve el Ìndice del primer nodo de la colecciÛn cuya clave sea la pasada como par·metro.
-     * @param key Clave a buscar en la colecciÛn.
-     * @param startIndex PosiciÛn dentro de la colecciÛn a partir del que se buscar·.
-     * @return Indice del nodo buscado. Devolver· el valor -1 en caso de no encontrarse el nodo dentro de la colecciÛn.
+     * Devuelve el √≠ndice del primer nodo de la colecci√≥n cuya clave sea la pasada como par√°metro.
+     * @param key Clave a buscar en la colecci√≥n.
+     * @param startIndex Posici√≥n dentro de la colecci√≥n a partir del que se buscar√°.
+     * @return Indice del nodo buscado. Devolver√° el valor -1 en caso de no encontrarse el nodo dentro de la colecci√≥n.
      */
     public int indexOf(String key, int startIndex)
     {
@@ -169,8 +169,8 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * AÒade al final de la colecciÛn una nueva lista de nodos.
-     * @param col Nueva lista de nodos a aÒadir a la colecciÛn actual.
+     * A√±ade al final de la colecci√≥n una nueva lista de nodos.
+     * @param col Nueva lista de nodos a a√±adir a la colecci√≥n actual.
      */
     public void addRange(RtfNodeCollection col)
     {
@@ -178,9 +178,9 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Elimina un conjunto de nodos adyacentes de la colecciÛn.
-     * @param index Õndice del primer nodo del conjunto a eliminar.
-     * @param count N˙mero de nodos a eliminar.
+     * Elimina un conjunto de nodos adyacentes de la colecci√≥n.
+     * @param index √çndice del primer nodo del conjunto a eliminar.
+     * @param count N√∫mero de nodos a eliminar.
      */
     public void removeRange(int index, int count)
     {
@@ -189,8 +189,8 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Elimina el nodo i-esimo de la colecciÛn.
-     * @param index Õndice del nodo a eliminar.
+     * Elimina el nodo i-esimo de la colecci√≥n.
+     * @param index √çndice del nodo a eliminar.
      */
     public void removeAt(int index)
     {
@@ -198,7 +198,7 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Elimina todos los nodos de la colecciÛn.
+     * Elimina todos los nodos de la colecci√≥n.
      */
     public void clear()
     {
@@ -206,8 +206,8 @@ public class RtfNodeCollection //In Sync
     }
 
     /**
-     * Obtiene el tamaÒo de la colecciÛn de nodos.
-     * @return Devuelve el n˙mero de nodos de la colecciÛn.
+     * Obtiene el tama√±o de la colecci√≥n de nodos.
+     * @return Devuelve el n√∫mero de nodos de la colecci√≥n.
      */
     public int size()
     {
@@ -215,7 +215,7 @@ public class RtfNodeCollection //In Sync
     }
     
     /**
-     * Elimina un nodo de la colecciÛn a partir de su Ìndice.
+     * Elimina un nodo de la colecci√≥n a partir de su √≠ndice.
      * @param index Indice del nodo a eliminar.
      */
     public void remove(int index)

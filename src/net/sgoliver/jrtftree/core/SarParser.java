@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,56 +23,56 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		SarParser
- * Description:	Representa un documento RTF en forma de ·rbol.
+ * Description:	Representa un documento RTF en forma de √°rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
 
 /**
- * Esta clase, utilizada por RtfReader, contiene todos los mÈtodos necesarios para tratar cada uno de 
- * los tipos de elementos presentes en un documento RTF. Estos mÈtodos ser·n llamados autom·ticamente 
- * durante el an·lisis del documento RTF realizado por la clase RtfReader.
+ * Esta clase, utilizada por RtfReader, contiene todos los m√©todos necesarios para tratar cada uno de 
+ * los tipos de elementos presentes en un documento RTF. Estos m√©todos ser√°n llamados autom√°ticamente 
+ * durante el an√°lisis del documento RTF realizado por la clase RtfReader.
  */
 public abstract class SarParser //In Sync
 {
 	/**
-	 * Este mÈtodo se llama una sÛla vez al comienzo del an·lisis del documento RTF.
+	 * Este m√©todo se llama una s√≥la vez al comienzo del an√°lisis del documento RTF.
 	 */
     public abstract void startRtfDocument();
 
     /**
-     * Este mÈtodo se llama una sÛla vez al final del an·lisis del documento RTF.
+     * Este m√©todo se llama una s√≥la vez al final del an√°lisis del documento RTF.
      */
     public abstract void endRtfDocument();
 
     /**
-     * Este mÈtodo se llama cada vez que se lee una llave de comienzo de grupo RTF.
+     * Este m√©todo se llama cada vez que se lee una llave de comienzo de grupo RTF.
      */
     public abstract void startRtfGroup();
 
     /**
-     * Este mÈtodo se llama cada vez que se lee una llave de fin de grupo RTF. 
+     * Este m√©todo se llama cada vez que se lee una llave de fin de grupo RTF. 
      */
     public abstract void endRtfGroup();
 
     /**
-     * Este mÈtodo se llama cada vez que se lee una palabra clave RTF.
+     * Este m√©todo se llama cada vez que se lee una palabra clave RTF.
      * @param key Palabra clave leida del documento.
-     * @param hasParam Indica si la palabra clave va acompaÒada de un par·metro.
-     * @param param Par·metro que acompaÒa a la palabra clave. En caso de que la palabra clave no vaya acompaÒada de ning˙n par·metro, es decir, que el campo hasParam sea 'false', este campo contendr· el valor 0.
+     * @param hasParam Indica si la palabra clave va acompa√±ada de un par√°metro.
+     * @param param Par√°metro que acompa√±a a la palabra clave. En caso de que la palabra clave no vaya acompa√±ada de ning√∫n par√°metro, es decir, que el campo hasParam sea 'false', este campo contendr√° el valor 0.
      */
     public abstract void rtfKeyword(String key, boolean hasParam, int param);
 
     /**
-     * Este mÈtodo se llama cada vez que se lee un sÌmbolo de Control RTF.
-     * @param key SÌmbolo de Control leido del documento.
-     * @param hasParam Indica si el sÌmbolo de Control va acompaÒado de un par·metro.
-     * @param param Par·metro que acompaÒa al sÌmbolo de Control. En caso de que el sÌmbolo de Control no vaya acompaÒado de ning˙n par·metro, es decir, que el campo hasParam sea 'false', este campo contendr· el valor 0.
+     * Este m√©todo se llama cada vez que se lee un s√≠mbolo de Control RTF.
+     * @param key S√≠mbolo de Control leido del documento.
+     * @param hasParam Indica si el s√≠mbolo de Control va acompa√±ado de un par√°metro.
+     * @param param Par√°metro que acompa√±a al s√≠mbolo de Control. En caso de que el s√≠mbolo de Control no vaya acompa√±ado de ning√∫n par√°metro, es decir, que el campo hasParam sea 'false', este campo contendr√° el valor 0.
      */
     public abstract void rtfControl(String key, boolean hasParam, int param);
 
     /**
-     * Este mÈtodo se llama cada vez que se lee un fragmento de Texto del documento RTF.
+     * Este m√©todo se llama cada vez que se lee un fragmento de Texto del documento RTF.
      * @param text Texto leido del documento.
      */
     public abstract void rtfText(String text);

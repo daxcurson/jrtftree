@@ -1,4 +1,4 @@
-/********************************************************************************
+ï»¿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfTree
- * Description:	Representa un documento RTF en forma de árbol.
+ * Description:	Representa un documento RTF en forma de Ã¡rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -47,7 +47,7 @@ import net.sgoliver.jrtftree.util.RtfStyleSheetTable;
 import net.sgoliver.jrtftree.util.RtfStyleSheetType;
 
 /**
- * Reresenta la estructura en forma de árbol de un documento RTF. 
+ * Reresenta la estructura en forma de Ã¡rbol de un documento RTF. 
  */
 public class RtfTree //In Sync
 {
@@ -64,7 +64,7 @@ public class RtfTree //In Sync
 	 */
     public RtfTree()
     {
-        //Se crea el nodo raíz del documento
+        //Se crea el nodo raÃ­z del documento
         rootNode = new RtfTreeNode(RtfNodeType.ROOT, "ROOT", false, 0);
         
         rootNode.setTree(this);
@@ -77,8 +77,8 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Realiza una copia exacta del árbol RTF.
-     * @return Devuelve una copia exacta del árbol RTF.
+     * Realiza una copia exacta del Ã¡rbol RTF.
+     * @return Devuelve una copia exacta del Ã¡rbol RTF.
      */
     public RtfTree cloneTree()
     {
@@ -92,7 +92,7 @@ public class RtfTree //In Sync
     /**
      * Carga un fichero en formato RTF.
      * @param path Ruta del fichero con el documento.
-     * @return Se devuelve el valor 0 en caso de no producirse ningún error en la carga del documento. En caso contrario se devuelve el valor -1.
+     * @return Se devuelve el valor 0 en caso de no producirse ningÃºn error en la carga del documento. En caso contrario se devuelve el valor -1.
      */
     public int loadRtfFile(String path)
     {
@@ -104,10 +104,10 @@ public class RtfTree //In Sync
 	        //Se abre el fichero de entrada
 	        rtf = new FileReader(path);
 	
-	        //Se crea el analizador léxico para RTF
+	        //Se crea el analizador lÃ©xico para RTF
 	        lex = new RtfLex(rtf);
 	
-	        //Se carga el árbol con el contenido del documento RTF
+	        //Se carga el Ã¡rbol con el contenido del documento RTF
 	        res = parseRtfTree();
 	
 	        //Se cierra el stream
@@ -125,7 +125,7 @@ public class RtfTree //In Sync
     /**
      * Carga una cadena de Texto con formato RTF.
      * @param text Cadena de Texto que contiene el documento.
-     * @return Se devuelve el valor 0 en caso de no producirse ningún error en la carga del documento. En caso contrario se devuelve el valor -1.
+     * @return Se devuelve el valor 0 en caso de no producirse ningÃºn error en la carga del documento. En caso contrario se devuelve el valor -1.
      */
     public int loadRtfText(String text)
     {
@@ -137,10 +137,10 @@ public class RtfTree //In Sync
 	        //Se abre el fichero de entrada
 	        rtf = new StringReader(text);
 	
-	        //Se crea el analizador léxico para RTF
+	        //Se crea el analizador lÃ©xico para RTF
 	        lex = new RtfLex(rtf);
 	
-	        //Se carga el árbol con el contenido del documento RTF
+	        //Se carga el Ã¡rbol con el contenido del documento RTF
 	        res = parseRtfTree();
 	
 	        //Se cierra el stream
@@ -156,7 +156,7 @@ public class RtfTree //In Sync
     }
 
     /**
-     * Escribe el código RTF del documento a un fichero.
+     * Escribe el cÃ³digo RTF del documento a un fichero.
      * @param filePath Ruta del fichero a generar con el documento RTF.
      * @throws IOException
      */
@@ -165,7 +165,7 @@ public class RtfTree //In Sync
         //Stream de salida
         FileWriter sw = new FileWriter(filePath);
 
-        //Se trasforma el árbol RTF a texto y se escribe al fichero
+        //Se trasforma el Ã¡rbol RTF a texto y se escribe al fichero
         sw.write(this.rootNode.getRtf());
 
         //Se cierra el fichero
@@ -174,7 +174,7 @@ public class RtfTree //In Sync
     }
 
     /**
-     * Devuelve una representación textual del documento cargado.
+     * Devuelve una representaciÃ³n textual del documento cargado.
      */
     public String toString()
     {
@@ -186,8 +186,8 @@ public class RtfTree //In Sync
     }
 
     /**
-     * Devuelve una representación textual del documento cargado. Añade el tipo de nodo a la izquierda del contenido del nodo.
-     * @return Cadena de caracteres con la representación del documento.
+     * Devuelve una representaciÃ³n textual del documento cargado. AÃ±ade el tipo de nodo a la izquierda del contenido del nodo.
+     * @return Cadena de caracteres con la representaciÃ³n del documento.
      */
     public String toStringEx()
     {
@@ -212,7 +212,7 @@ public class RtfTree //In Sync
 		//Grupo principal del documento
 		RtfTreeNode nprin = root.firstChild();
 
-        //Buscamos la tabla de fuentes en el árbol
+        //Buscamos la tabla de fuentes en el Ã¡rbol
         boolean enc = false;
         int i = 0;
         RtfTreeNode ntf = new RtfTreeNode();  //Nodo con la tabla de fuentes
@@ -268,7 +268,7 @@ public class RtfTree //In Sync
         //Grupo principal del documento
         RtfTreeNode nprin = root.firstChild();
 
-        //Buscamos la tabla de colores en el árbol
+        //Buscamos la tabla de colores en el Ã¡rbol
         boolean enc = false;
         int i = 0;
         RtfTreeNode ntc = new RtfTreeNode();  //Nodo con la tabla de fuentes
@@ -290,7 +290,7 @@ public class RtfTree //In Sync
         int verde = 0;
         int azul = 0;
 
-        //Añadimos el color por defecto, en este caso el negro.
+        //AÃ±adimos el color por defecto, en este caso el negro.
         //tabla.Add(Color.FromArgb(rojo,verde,azul));
 
         for (int j = 1; j < ntc.getChildNodes().size(); j++)
@@ -345,8 +345,8 @@ public class RtfTree //In Sync
     }
 
     /**
-     * Devuelve la información contenida en el grupo "\info" del documento RTF.
-     * @return Objeto InfoGroup con la información del grupo "\info" del documento RTF.
+     * Devuelve la informaciÃ³n contenida en el grupo "\info" del documento RTF.
+     * @return Objeto InfoGroup con la informaciÃ³n del grupo "\info" del documento RTF.
      */
     public InfoGroup getInfoGroup()
     {
@@ -354,7 +354,7 @@ public class RtfTree //In Sync
 
         RtfTreeNode infoNode = this.rootNode.selectSingleNode("info");
 
-        //Si existe el nodo "\info" exraemos toda la información.
+        //Si existe el nodo "\info" exraemos toda la informaciÃ³n.
         if (infoNode != null)
         {
             RtfTreeNode auxnode = null;
@@ -454,8 +454,8 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Devuelve la tabla de códigos con la que está codificado el documento RTF.
-     * @return Tabla de códigos del documento RTF. Si no está especificada en el documento se devuelve la tabla de códigos actual del sistema.
+     * Devuelve la tabla de cÃ³digos con la que estÃ¡ codificado el documento RTF.
+     * @return Tabla de cÃ³digos del documento RTF. Si no estÃ¡ especificada en el documento se devuelve la tabla de cÃ³digos actual del sistema.
      */
     public Charset getEncoding()
     {
@@ -471,24 +471,24 @@ public class RtfTree //In Sync
         return encoding;
     }
 
-    //Métodos Privados
+    //MÃ©todos Privados
     
     /**
-     * Analiza el documento y lo carga con estructura de árbol.
-     * @return Se devuelve el valor 0 en caso de no producirse ningún error en la carga del documento. En caso contrario se devuelve el valor -1.
+     * Analiza el documento y lo carga con estructura de Ã¡rbol.
+     * @return Se devuelve el valor 0 en caso de no producirse ningÃºn error en la carga del documento. En caso contrario se devuelve el valor -1.
      */
     private int parseRtfTree()
     {
         //Resultado de la carga del documento
         int res = 0;
         
-        //Codificación por defecto del documento
+        //CodificaciÃ³n por defecto del documento
         Charset encoding = Charset.defaultCharset();
 
         //Nodo actual
         RtfTreeNode curNode = rootNode;
 
-        //Nuevos nodos para construir el árbol RTF
+        //Nuevos nodos para construir el Ã¡rbol RTF
         RtfTreeNode newNode = null;
 
         try
@@ -562,7 +562,7 @@ public class RtfTree //In Sync
 	            tok = lex.nextToken();
 	        }
 	        
-	        //Si el nivel actual no es 0 ( == Algun grupo no está bien formado )
+	        //Si el nivel actual no es 0 ( == Algun grupo no estÃ¡ bien formado )
 	        if (level != 0)
 	        {
 	            res = -1;
@@ -578,9 +578,9 @@ public class RtfTree //In Sync
     }
 
     /**
-     * Decodifica un caracter especial indicado por su código decimal
-     * @param code Código del caracter especial (\')
-     * @param enc Codificación utilizada para decodificar el caracter especial.
+     * Decodifica un caracter especial indicado por su cÃ³digo decimal
+     * @param code CÃ³digo del caracter especial (\')
+     * @param enc CodificaciÃ³n utilizada para decodificar el caracter especial.
      * @return Caracter especial decodificado.
      */
     private static String decodeControlChar(int code, Charset enc)
@@ -589,11 +589,11 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Método auxiliar para generar la representación Textual del documento RTF.
-     * @param curNode Nodo actual del árbol.
-     * @param level Nivel actual en árbol.
-     * @param showNodeTypes Indica si se mostrará el tipo de cada nodo del árbol.
-     * @return Representación Textual del nodo 'curNode' con nivel 'level'.
+     * MÃ©todo auxiliar para generar la representaciÃ³n Textual del documento RTF.
+     * @param curNode Nodo actual del Ã¡rbol.
+     * @param level Nivel actual en Ã¡rbol.
+     * @param showNodeTypes Indica si se mostrarÃ¡ el tipo de cada nodo del Ã¡rbol.
+     * @return RepresentaciÃ³n Textual del nodo 'curNode' con nivel 'level'.
      */
     private String toStringInm(RtfTreeNode curNode, int level, boolean showNodeTypes)
     {
@@ -674,7 +674,7 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Extrae el texto de un árbol RTF.
+     * Extrae el texto de un Ã¡rbol RTF.
      * @return Texto plano del documento.
      */
     private String convertToText()
@@ -800,7 +800,7 @@ public class RtfTree //In Sync
     //Propiedades
     
     /**
-     * Obtiene el nodo raíz del árbol RTF.
+     * Obtiene el nodo raÃ­z del Ã¡rbol RTF.
      */
     public RtfTreeNode getRootNode()
     {
@@ -821,8 +821,8 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Obtiene el código RTF completo del documento.
-     * @return Código RTF del documento completo.
+     * Obtiene el cÃ³digo RTF completo del documento.
+     * @return CÃ³digo RTF del documento completo.
      */
     public String getRtf()
     {
@@ -830,7 +830,7 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Indica si se decodifican los caracteres especiales (\') uniéndolos a nodos de texto contiguos.
+     * Indica si se decodifican los caracteres especiales (\') uniÃ©ndolos a nodos de texto contiguos.
      * @return
      */
     public boolean getMergeSpecialCharacters()
@@ -839,7 +839,7 @@ public class RtfTree //In Sync
     }
     
     /**
-     * Indica si se decodifican los caracteres especiales (\') uniéndolos a nodos de texto contiguos.
+     * Indica si se decodifican los caracteres especiales (\') uniÃ©ndolos a nodos de texto contiguos.
      * @param value
      */
     public void setMergeSpecialCharacters(boolean value)

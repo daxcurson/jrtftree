@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfReader
- * Description:	Representa un documento RTF en forma de ·rbol.
+ * Description:	Representa un documento RTF en forma de √°rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -34,18 +34,18 @@ import java.io.Reader;
 import java.io.StringReader;
 
 /**
- * Esta clase proporciona los mÈtodos necesarios para la carga y an·lisis secuencial de un documento RTF. 
+ * Esta clase proporciona los m√©todos necesarios para la carga y an√°lisis secuencial de un documento RTF. 
  */
 public class RtfReader //In Sync
 {
     private Reader rtf;			//Fichero/Cadena de entrada RTF
-    private RtfLex lex;			//Analizador lÈxico para RTF
+    private RtfLex lex;			//Analizador l√©xico para RTF
     private RtfToken tok;		//Token actual
     private SarParser reader;	//Rtf Reader
     
     /**
      * Constructor de la clase RtfReader.
-     * @param reader Objeto del tipo SARParser que contienen los mÈtodos necesarios para el tratamiento de los distintos elementos de un documento RTF.
+     * @param reader Objeto del tipo SARParser que contienen los m√©todos necesarios para el tratamiento de los distintos elementos de un documento RTF.
      */
     public RtfReader(SarParser reader)
     {
@@ -71,7 +71,7 @@ public class RtfReader //In Sync
 	        //Se abre el fichero de entrada
 	        rtf = new FileReader(path);
 	
-	        //Se crea el analizador lÈxico para RTF
+	        //Se crea el analizador l√©xico para RTF
 	        lex = new RtfLex(rtf);
         }
         catch(IOException ex)
@@ -98,7 +98,7 @@ public class RtfReader //In Sync
 	        //Se abre el fichero de entrada
 	        rtf = new StringReader(text);
 		
-	        //Se crea el analizador lÈxico para RTF
+	        //Se crea el analizador l√©xico para RTF
 	        lex = new RtfLex(rtf);
         }
         catch(IOException ex)
@@ -111,12 +111,12 @@ public class RtfReader //In Sync
     }
     
     /**
-     * Comienza el an·lisis del documento RTF y provoca la llamada a los distintos mÈtodos del objeto IRtfReader indicado en el constructor de la clase.
-     * @return Resultado del an·lisis del documento. Si la carga se realiza correctamente se devuelve el valor 0.
+     * Comienza el an√°lisis del documento RTF y provoca la llamada a los distintos m√©todos del objeto IRtfReader indicado en el constructor de la clase.
+     * @return Resultado del an√°lisis del documento. Si la carga se realiza correctamente se devuelve el valor 0.
      */
     public int parse()
     {
-        //Resultado del an·lisis
+        //Resultado del an√°lisis
         int res = 0;
 
         try

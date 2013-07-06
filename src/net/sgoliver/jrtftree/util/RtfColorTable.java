@@ -1,4 +1,4 @@
-/********************************************************************************
+ï»¿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -53,9 +53,9 @@ public class RtfColorTable //In Sync
     }
 	
 	/**
-	 * Obtiene el color n-ésimo de la tabla de colores.
+	 * Obtiene el color n-Ã©simo de la tabla de colores.
 	 * @param index Indice del color a recuperar.
-	 * @return Color n-ésimo de la tabla de colores.
+	 * @return Color n-Ã©simo de la tabla de colores.
 	 */
 	public Color get(int index)
 	{
@@ -63,7 +63,7 @@ public class RtfColorTable //In Sync
 	}
 	
 	/**
-	 * Número de fuentes en la tabla.
+	 * NÃºmero de fuentes en la tabla.
 	 * @return
 	 */
 	public int size()
@@ -72,7 +72,7 @@ public class RtfColorTable //In Sync
 	}
 	
 	/**
-	 * Obtiene el índice de un color determinado en la tabla
+	 * Obtiene el Ã­ndice de un color determinado en la tabla
 	 * @param name Color a consultar.
 	 * @return Indice del color consultado.
 	 */

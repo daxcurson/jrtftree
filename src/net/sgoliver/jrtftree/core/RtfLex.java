@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfLex
- * Description:	Representa un documento RTF en forma de ·rbol.
+ * Description:	Representa un documento RTF en forma de √°rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -32,7 +32,7 @@ import java.io.IOException;
 import java.io.*;
 
 /**
- * Analizador lÈxico (tokenizador) para documentos en formato RTF. Analiza el documento y devuelve de 
+ * Analizador l√©xico (tokenizador) para documentos en formato RTF. Analiza el documento y devuelve de 
  * forma secuencial todos los elementos RTF leidos (tokens).
  */
 public class RtfLex //In Sync
@@ -63,7 +63,7 @@ public class RtfLex //In Sync
         c = rtf.read();
     }
     
-    //MÈtodos P˙blicos
+    //M√©todos P√∫blicos
     
     /**
      * Lee un nuevo token del documento RTF.
@@ -108,11 +108,11 @@ public class RtfLex //In Sync
         return token;
     }
     
-    //MÈtodos Privados
+    //M√©todos Privados
     
     /**
      * Lee una palabra clave del documento RTF.
-     * @param token Token RTF al que se asignar· la palabra clave.
+     * @param token Token RTF al que se asignar√° la palabra clave.
      * @throws IOException
      */
     private void parseKeyword(RtfToken token) throws IOException
@@ -126,7 +126,7 @@ public class RtfLex //In Sync
         
         c = rtf.read();
         
-        //Si el caracter leido no es una letra --> Se trata de un sÌmbolo de control o un caracter especial: '\\', '\{' o '\}'
+        //Si el caracter leido no es una letra --> Se trata de un s√≠mbolo de control o un caracter especial: '\\', '\{' o '\}'
         if (!Character.isLetter((char)c))
         {
         	if (c == '\\' || c == '{' || c == '}')  //Caracter especial
@@ -139,7 +139,7 @@ public class RtfLex //In Sync
 	            token.setTokenType(RtfTokenType.CONTROL);
 	            token.setKey(new String(new char[]{(char)c})); 
 	
-	            //Si se trata de un caracter especial (codigo de 8 bits) se lee el par·metro hexadecimal
+	            //Si se trata de un caracter especial (codigo de 8 bits) se lee el par√°metro hexadecimal
 	            if (token.getKey().equals("\'"))
 	            {
 	                String cod = "";
@@ -152,14 +152,14 @@ public class RtfLex //In Sync
 	                token.setParam(Integer.parseInt(cod,16));
 	            }
 	            
-	            //TODO: øHay m·s sÌmbolos de Control con par·metros?
+	            //TODO: ¬øHay m√°s s√≠mbolos de Control con par√°metros?
         	}
         	
         	c = rtf.read();
         }
         else   //El caracter leido es una letra
         {
-	        //Se lee la palabra clave completa (hasta encontrar un caracter no alfanumÈrico, por ejemplo '\' Û ' '      
+	        //Se lee la palabra clave completa (hasta encontrar un caracter no alfanum√©rico, por ejemplo '\' √≥ ' '      
 	        while (Character.isLetter((char)c))
 	        {
 	            keysb.append((char)c);
@@ -171,12 +171,12 @@ public class RtfLex //In Sync
 	        token.setTokenType(RtfTokenType.KEYWORD);
 	        token.setKey(keysb.toString());
 	
-	        //Se comprueba si la palabra clave tiene par·metro
+	        //Se comprueba si la palabra clave tiene par√°metro
 	        if (Character.isDigit((char)c) || c == '-')
 	        {
 	            token.setHasParam(true);
 	
-	            //Se comprubea si el par·metro es negativo
+	            //Se comprubea si el par√°metro es negativo
 	            if (c == '-')
 	            {
 	                negativo = true;
@@ -184,7 +184,7 @@ public class RtfLex //In Sync
 	                c = rtf.read();
 	            }
 	
-	            //Se lee el par·metro completo           
+	            //Se lee el par√°metro completo           
 	            while (Character.isDigit((char)c))
 	            {
 	                parsb.append((char)c);
@@ -197,7 +197,7 @@ public class RtfLex //In Sync
 	            if (negativo)
 	                parametroInt = -parametroInt;
 	
-	            //Se asigna el par·metro de la palabra clave
+	            //Se asigna el par√°metro de la palabra clave
 	            token.setParam(parametroInt);
 	        }
 	
@@ -211,7 +211,7 @@ public class RtfLex //In Sync
     /**
      * Lee una cadena de Texto del documento RTF.
      * @param car Primer caracter de la cadena.
-     * @param token Token RTF al que se asignar· la palabra clave.
+     * @param token Token RTF al que se asignar√° la palabra clave.
      */
     private void parseText(RtfToken token) throws IOException
     {

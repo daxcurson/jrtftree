@@ -1,4 +1,4 @@
-/********************************************************************************
+ï»¿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfNodeType
- * Description:	Representa un documento RTF en forma de árbol.
+ * Description:	Representa un documento RTF en forma de Ã¡rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -34,7 +34,7 @@ package net.sgoliver.jrtftree.core;
 public class RtfNodeType //In Sync
 {
 	/**
-	 * Nodo raíz.
+	 * Nodo raÃ­z.
 	 */
 	public static final int ROOT = 0;
 	
@@ -44,7 +44,7 @@ public class RtfNodeType //In Sync
 	public static final int KEYWORD = 1;
 	
 	/**
-	 * Símbolo de control.
+	 * SÃ­mbolo de control.
 	 */
 	public static final int CONTROL = 2;
 	
@@ -66,7 +66,7 @@ public class RtfNodeType //In Sync
 	/**
 	 * Convierte el tipo de nodo a cadena.
 	 * @param nodeType Tipo de nodo.
-	 * @return Representación textual del tipo de nodo.
+	 * @return RepresentaciÃ³n textual del tipo de nodo.
 	 */
 	public static String toString(int nodeType)
 	{

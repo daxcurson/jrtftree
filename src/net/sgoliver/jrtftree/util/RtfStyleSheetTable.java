@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -43,8 +43,8 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * AÒade un nuevo estilo a la tabla de estilos. El estilo se aÒadir· con un nuevo Ìndice no existente en la tabla.
-	 * @param ss Nuevo estilo a aÒadir a la tabla.
+	 * A√±ade un nuevo estilo a la tabla de estilos. El estilo se a√±adir√° con un nuevo √≠ndice no existente en la tabla.
+	 * @param ss Nuevo estilo a a√±adir a la tabla.
 	 */
 	public void addStyleSheet(RtfStyleSheet ss)
     {
@@ -54,9 +54,9 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * AÒade un nuevo estilo a la tabla de estilos. El estilo se aÒadir· con el Ìndice de estilo pasado como par·metro.
-	 * @param index Indice del estilo a aÒadir a la tabla.
-	 * @param ss Nuevo estilo a aÒadir a la tabla.
+	 * A√±ade un nuevo estilo a la tabla de estilos. El estilo se a√±adir√° con el √≠ndice de estilo pasado como par√°metro.
+	 * @param index Indice del estilo a a√±adir a la tabla.
+	 * @param ss Nuevo estilo a a√±adir a la tabla.
 	 */
 	public void addStyleSheet(int index, RtfStyleSheet ss)
     {
@@ -66,7 +66,7 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * Elimina un estilo de la tabla de estilos por Ìndice.
+	 * Elimina un estilo de la tabla de estilos por √≠ndice.
 	 * @param index Indice de la hoja de estilos a eliminar.
 	 */
 	public void removeStyleSheet(int index)
@@ -75,7 +75,7 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * Elimina de la tabla de estilos el estilo pasado como par·metro.
+	 * Elimina de la tabla de estilos el estilo pasado como par√°metro.
 	 * @param ss Hoja de estilos a eliminar.
 	 */
 	public void removeStyleSheet(RtfStyleSheet ss)
@@ -84,9 +84,9 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * Recupera un estilo de la tabla de estilos por Ìndice.
+	 * Recupera un estilo de la tabla de estilos por √≠ndice.
 	 * @param index Indice del estilo a recuperar.
-	 * @return Estilo cuyo Ìndice es el pasado como par·metro.
+	 * @return Estilo cuyo √≠ndice es el pasado como par√°metro.
 	 */
 	public RtfStyleSheet get(int index)
     {
@@ -94,8 +94,8 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * N˙mero de estilos contenidos en la tabla de estilos.
-	 * @return N˙mero de estilos contenidos en la tabla de estilos.
+	 * N√∫mero de estilos contenidos en la tabla de estilos.
+	 * @return N√∫mero de estilos contenidos en la tabla de estilos.
 	 */
 	public int size()
 	{
@@ -103,9 +103,9 @@ public class RtfStyleSheetTable //In Sync
 	}
 	
 	/**
-	 * Õndice del estilo cuyo nombre es el pasado como par·metro.
+	 * √çndice del estilo cuyo nombre es el pasado como par√°metro.
 	 * @param name Nombre del estilo buscado.
-	 * @return Estilo cuyo nombre es el pasado como par·metro.
+	 * @return Estilo cuyo nombre es el pasado como par√°metro.
 	 */
 	public int indexOf(String name)
     {
@@ -125,8 +125,8 @@ public class RtfStyleSheetTable //In Sync
     }
 	
 	/**
-	 * Calcula un nuevo Ìndice para insertar un estilo en la tabla.
-	 * @return Õndice del prÛximo estilo a insertar.
+	 * Calcula un nuevo √≠ndice para insertar un estilo en la tabla.
+	 * @return √çndice del pr√≥ximo estilo a insertar.
 	 */
 	private int newStyleSheetIndex()
     {

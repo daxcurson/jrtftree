@@ -1,4 +1,4 @@
-/********************************************************************************
+ï»¿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		TextAlignment
- * Description:	Tipos de alineación de texto.
+ * Description:	Tipos de alineaciÃ³n de texto.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.util;
@@ -54,9 +54,9 @@ public class TextAlignment //In Sync
 	public static final int JUSTIFIED = 3;
 	
 	/**
-	 * Convierte a cadena el tipo de alineación de texto.
-	 * @param ta Tipo de alineación de texto.
-	 * @return Representación textual del tipo de alineación de texto.
+	 * Convierte a cadena el tipo de alineaciÃ³n de texto.
+	 * @param ta Tipo de alineaciÃ³n de texto.
+	 * @return RepresentaciÃ³n textual del tipo de alineaciÃ³n de texto.
 	 */
 	public static String toString(int ta)
 	{

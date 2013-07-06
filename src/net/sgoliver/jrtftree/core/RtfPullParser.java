@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -52,7 +52,7 @@ public class RtfPullParser //In Sync
     //Atributos
 
     private Reader rtf;			//Fichero/Cadena de entrada RTF
-    private RtfLex lex;		    //Analizador lÈxico para RTF
+    private RtfLex lex;		    //Analizador l√©xico para RTF
     private RtfToken tok;		//Token actual
     private int currentEvent;   //Evento actual
 
@@ -79,7 +79,7 @@ public class RtfPullParser //In Sync
         //Se abre el fichero de entrada
         rtf = new FileReader(path);
 
-        //Se crea el analizador lÈxico para RTF
+        //Se crea el analizador l√©xico para RTF
         lex = new RtfLex(rtf);
 
         return res;
@@ -97,13 +97,13 @@ public class RtfPullParser //In Sync
         //Se abre el fichero de entrada
         rtf = new StringReader(text);
 
-        //Se crea el analizador lÈxico para RTF
+        //Se crea el analizador l√©xico para RTF
         lex = new RtfLex(rtf);
 
         return res;
     }
 
-    //MÈtodos P˙blicos
+    //M√©todos P√∫blicos
 
     /**
      * Obtiene el tipo de evento actual.
@@ -149,8 +149,8 @@ public class RtfPullParser //In Sync
     }
 
     /**
-     * Obtiene la palabra clave / sÌmbolo control del elemento actual.
-     * @return Palabra clave / sÌmbolo control del elemento actual.
+     * Obtiene la palabra clave / s√≠mbolo control del elemento actual.
+     * @return Palabra clave / s√≠mbolo control del elemento actual.
      */
     public String getName()
     {
@@ -158,8 +158,8 @@ public class RtfPullParser //In Sync
     }
 
     /**
-     * Obtiene el par·metro del elemento actual.
-     * @return Par·metro del elemento actual.
+     * Obtiene el par√°metro del elemento actual.
+     * @return Par√°metro del elemento actual.
      */
     public int getParam()
     {
@@ -167,8 +167,8 @@ public class RtfPullParser //In Sync
     }
 
     /**
-     * Consulta si el elemento actual tiene par·metro.
-     * @return Devuelve TRUE si el elemento actual tiene par·metro.
+     * Consulta si el elemento actual tiene par√°metro.
+     * @return Devuelve TRUE si el elemento actual tiene par√°metro.
      */
     public boolean getHasParam()
     {

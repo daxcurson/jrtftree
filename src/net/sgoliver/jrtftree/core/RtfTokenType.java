@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,28 +23,28 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfTokenType
- * Description:	Representa un documento RTF en forma de ·rbol.
+ * Description:	Representa un documento RTF en forma de √°rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
 
 /**
- * Tipos de token de un ·rbol de documento RTF.
+ * Tipos de token de un √°rbol de documento RTF.
  */
 public class RtfTokenType //In Sync
 {
 	/**
-	 * Indica que el token sÛlo se ha inicializado.
+	 * Indica que el token s√≥lo se ha inicializado.
 	 */
 	public static final int NONE = 0;
 	
 	/**
-	 * Palabra clave sin par·metro.
+	 * Palabra clave sin par√°metro.
 	 */
 	public static final int KEYWORD = 1;
 	
 	/**
-	 * SÌmbolo de Control sin par·metro.
+	 * S√≠mbolo de Control sin par√°metro.
 	 */
 	public static final int CONTROL = 2;
 	
@@ -71,7 +71,7 @@ public class RtfTokenType //In Sync
 	/**
 	 * Convierte a cadena el tipo de token.
 	 * @param tokenType Tipo de token.
-	 * @return RepresentaciÛn textual del tipo de token.
+	 * @return Representaci√≥n textual del tipo de token.
 	 */
 	public static String toString(int tokenType)
 	{

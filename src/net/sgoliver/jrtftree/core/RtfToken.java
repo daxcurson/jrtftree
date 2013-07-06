@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfToken
- * Description:	Representa un documento RTF en forma de ·rbol.
+ * Description:	Representa un documento RTF en forma de √°rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -46,33 +46,33 @@ public class RtfToken //In Sync
 	private boolean hasParam;
 	
 	/**
-	 * Par·metro asociado al token, en caso de existir.
+	 * Par√°metro asociado al token, en caso de existir.
 	 */
 	private int param;
 	
 	/**
-	 * Establece el par·metro del token.
+	 * Establece el par√°metro del token.
 	 */
 	public void setParam(int param) {
 		this.param = param;
 	}
 
 	/**
-	 * Obtiene el par·metro del token.
+	 * Obtiene el par√°metro del token.
 	 */
 	public int getParam() {
 		return param;
 	}
 	
 	/**
-	 * Establece si el token tiene par·metro asociado.
+	 * Establece si el token tiene par√°metro asociado.
 	 */
 	public void setHasParam(boolean hasParam) {
 		this.hasParam = hasParam;
 	}
 
 	/**
-	 * Obtiene si el token tiene par·metro asociado.
+	 * Obtiene si el token tiene par√°metro asociado.
 	 */
 	public boolean getHasParam() {
 		return hasParam;

@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -44,12 +44,12 @@ public class RtfStyleSheetType //In Sync
 	public static final int CHARACTER = 1;
 	
 	/**
-	 * Hoja de estilo de p·rrafo.
+	 * Hoja de estilo de p√°rrafo.
 	 */
 	public static final int PARAGRAPH = 2;
 	
 	/**
-	 * Hoja de estilo de secciÛn.
+	 * Hoja de estilo de secci√≥n.
 	 */
 	public static final int SECTION = 3;
 	
@@ -61,7 +61,7 @@ public class RtfStyleSheetType //In Sync
 	/**
 	 * Convierte a cadena el tipo de hoja de estilos.
 	 * @param ssType Tipo de hoja de estilos.
-	 * @return RepresentaciÛn textual del tipo de hoja de estilos.
+	 * @return Representaci√≥n textual del tipo de hoja de estilos.
 	 */
 	public static String toString(int ssType)
 	{

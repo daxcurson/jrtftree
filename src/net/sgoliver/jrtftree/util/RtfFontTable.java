@@ -1,4 +1,4 @@
-/********************************************************************************
+ï»¿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -62,9 +62,9 @@ public class RtfFontTable //In Sync
     }
 	
 	/**
-	 * Obtiene la fuente n-ésima de la tabla de fuentes.
+	 * Obtiene la fuente n-Ã©sima de la tabla de fuentes.
 	 * @param index Indice de la fuente a recuperar.
-	 * @return Fuente n-ésima de la tabla de fuentes.
+	 * @return Fuente n-Ã©sima de la tabla de fuentes.
 	 */
 	public String get(int index)
 	{
@@ -72,7 +72,7 @@ public class RtfFontTable //In Sync
 	}
 	
 	/**
-	 * Número de fuentes en la tabla.
+	 * NÃºmero de fuentes en la tabla.
 	 * @return
 	 */
 	public int size()
@@ -81,7 +81,7 @@ public class RtfFontTable //In Sync
 	}
 	
 	/**
-	 * Obtiene el índice de una fuente determinado en la tabla.
+	 * Obtiene el Ã­ndice de una fuente determinado en la tabla.
 	 * @param name Fuente a consultar.
 	 * @return Indice de la fuente consultada.
 	 */
@@ -103,8 +103,8 @@ public class RtfFontTable //In Sync
     }
 	
 	/**
-	 * Obtiene un índice que no se esté usando en la tabla.
-	 * @return Obtiene un índice que no se esté usando en la tabla.
+	 * Obtiene un Ã­ndice que no se estÃ© usando en la tabla.
+	 * @return Obtiene un Ã­ndice que no se estÃ© usando en la tabla.
 	 */
 	private int newFontIndex()
     {

@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -105,7 +105,7 @@ public class NavigationTest //In Sync
 	@Test
 	public void simpleTreeNavigation() 
 	{
-		// CreaciÛn de un ·rbol sencillo
+		// Creaci√≥n de un √°rbol sencillo
 		RtfTree tree = new RtfTree();
 
 		RtfTreeNode mainGroup = new RtfTreeNode(RtfNodeType.GROUP);
@@ -125,11 +125,11 @@ public class NavigationTest //In Sync
 
 		tree.getRootNode().appendChild(mainGroup);
 
-		// NavegaciÛn b·sica: tree
+		// Navegaci√≥n b√°sica: tree
 		assertNotNull(tree.getRootNode());
 		assertSame(tree.getMainGroup(), mainGroup);
 
-		// NavegaciÛn b·sica: newGroup
+		// Navegaci√≥n b√°sica: newGroup
 		assertSame(newGroup.getTree(), tree);
 		assertSame(newGroup.getParentNode(), mainGroup);
 		assertSame(newGroup.getRootNode(), tree.getRootNode());
@@ -141,7 +141,7 @@ public class NavigationTest //In Sync
 		assertNull(newGroup.nextSibling());
 		assertEquals(1, newGroup.getIndex());
 
-		// NavegaciÛn b·sica: nodo2
+		// Navegaci√≥n b√°sica: nodo2
 		assertSame(node2.getTree(), tree);
 		assertSame(node2.getParentNode(), newGroup);
 		assertSame(node2.getRootNode(), tree.getRootNode());
@@ -156,7 +156,7 @@ public class NavigationTest //In Sync
 	@Test
 	public void adjacentNodes() 
 	{
-		// CreaciÛn de un ·rbol sencillo
+		// Creaci√≥n de un √°rbol sencillo
 		RtfTree tree = new RtfTree();
 
 		RtfTreeNode mainGroup = new RtfTreeNode(RtfNodeType.GROUP);

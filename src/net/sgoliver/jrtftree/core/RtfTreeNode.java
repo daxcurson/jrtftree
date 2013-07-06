@@ -1,4 +1,4 @@
-/********************************************************************************
+ï»¿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfTreeNode
- * Description:	Representa un documento RTF en forma de árbol.
+ * Description:	Representa un documento RTF en forma de Ã¡rbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.core;
@@ -33,7 +33,7 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
 /**
- * Nodo RTF de la representación en árbol de un documento. 
+ * Nodo RTF de la representaciÃ³n en Ã¡rbol de un documento. 
  */
 public class RtfTreeNode //In Sync
 {
@@ -67,7 +67,7 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Constructor de la clase. Crea un nodo vacío del tipo pasado como parámetro.
+     * Constructor de la clase. Crea un nodo vacÃ­o del tipo pasado como parÃ¡metro.
      * @param nodeType Tipo de nodo a crear.
      */
     public RtfTreeNode(int nodeType)
@@ -92,11 +92,11 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Constructor de la clase. Crea un nodo completo con los datos suministrados como parñametros.
+     * Constructor de la clase. Crea un nodo completo con los datos suministrados como parÃ±ametros.
      * @param nodeType Tipo de nodo.
      * @param key Clave del nodo.
-     * @param hasParam Indicativo de existencia de parámetro.
-     * @param param Parámetro del nodo, en caso de existir.
+     * @param hasParam Indicativo de existencia de parÃ¡metro.
+     * @param param ParÃ¡metro del nodo, en caso de existir.
      */
     public RtfTreeNode(int nodeType, String key, boolean hasParam, int param)
     {
@@ -120,8 +120,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Constructor privado de la clase. Crea un nodo a partir de un token del analizador léxico.
-     * @param token Token RTF devuelto por el analizador léxico.
+     * Constructor privado de la clase. Crea un nodo a partir de un token del analizador lÃ©xico.
+     * @param token Token RTF devuelto por el analizador lÃ©xico.
      */
     protected RtfTreeNode(RtfToken token)
     {
@@ -136,17 +136,17 @@ public class RtfTreeNode //In Sync
         this.tree = null;
     }
     
-    //Métodos Públicos
+    //MÃ©todos PÃºblicos
     
     /**
-     * Añade un nodo al final de la lista de hijos.
-     * @param newNode Nuevo nodo a añadir.
+     * AÃ±ade un nodo al final de la lista de hijos.
+     * @param newNode Nuevo nodo a aÃ±adir.
      */
     public void appendChild(RtfTreeNode newNode)
     {
     	if(newNode != null)
 		{
-    		//Si aún no tenía hijos se inicializa la colección
+    		//Si aÃºn no tenÃ­a hijos se inicializa la colecciÃ³n
             if (children == null)
                 children = new RtfNodeCollection();
     		
@@ -156,21 +156,21 @@ public class RtfTreeNode //In Sync
 	        //Se actualizan las propiedades Root y Tree del nuevo nodo y sus posibles hijos
             updateNodeRoot(newNode);
 	
-				        //Se añade el nuevo nodo al final de la lista de nodos hijo
+				        //Se aÃ±ade el nuevo nodo al final de la lista de nodos hijo
 				        children.add(newNode);
 		}
     }
     
     /**
-     * Inserta un nuevo nodo en una posición determinada de la lista de hijos.
-     * @param index Posición en la que se insertará el nodo.
+     * Inserta un nuevo nodo en una posiciÃ³n determinada de la lista de hijos.
+     * @param index PosiciÃ³n en la que se insertarÃ¡ el nodo.
      * @param newNode Nuevo nodo a insertar.
      */
     public void insertChild(int index, RtfTreeNode newNode)
     {
         if (newNode != null)
         {
-            //Si aún no tenía hijos se inicializa la colección
+            //Si aÃºn no tenÃ­a hijos se inicializa la colecciÃ³n
             if (children == null)
                 children = new RtfNodeCollection();
 
@@ -182,7 +182,7 @@ public class RtfTreeNode //In Sync
                 //Se actualizan las propiedades Root y Tree del nuevo nodo y sus posibles hijos
                 updateNodeRoot(newNode);
 
-                //Se añade el nuevo nodo al final de la lista de nodos hijo
+                //Se aÃ±ade el nuevo nodo al final de la lista de nodos hijo
                 children.insert(index, newNode);
             }
         }
@@ -199,7 +199,7 @@ public class RtfTreeNode //In Sync
         {
         	if (index >= 0 && index < children.size())
             {
-        		//Se elimina el i-ésimo hijo
+        		//Se elimina el i-Ã©simo hijo
         		children.remove(index);
             }
         }
@@ -220,7 +220,7 @@ public class RtfTreeNode //In Sync
 	        //Si lo encontramos
             if (index != -1)
             {
-		        //Se elimina el i-ésimo hijo
+		        //Se elimina el i-Ã©simo hijo
 		        children.remove(index);
             }
         }
@@ -242,7 +242,7 @@ public class RtfTreeNode //In Sync
         clon.tree = null;
         clon.nodeType = this.nodeType;
 
-        //Se clonan también cada uno de los hijos
+        //Se clonan tambiÃ©n cada uno de los hijos
         clon.children = null;
 
         if (this.children != null)
@@ -263,7 +263,7 @@ public class RtfTreeNode //In Sync
 
     /**
      * Indica si el nodo actual tiene nodos hijos.
-     * @return Devuelve true si el nodo actual tiene algún nodo hijo.
+     * @return Devuelve true si el nodo actual tiene algÃºn nodo hijo.
      */
     public boolean hasChildNodes()
     {
@@ -276,9 +276,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve el primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parámetro.
+     * Devuelve el primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parámetro.
+     * @return Primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSingleChildNode(String keyword)
     {
@@ -304,9 +304,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve el primer nodo de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parámetro.
+     * Devuelve el primer nodo de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parÃ¡metro.
      * @param nodeType Tipo de nodo buscado.
-     * @return Primer nodo de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parámetro.
+     * @return Primer nodo de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parÃ¡metro.
      */
     public RtfTreeNode selectSingleChildNode(int nodeType)
     {
@@ -332,10 +332,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave y parámetro son los indicados como parámetros.
+     * Devuelve el primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metros.
      * @param keyword Palabra clave buscada.
-     * @param param Parámetro buscado.
-     * @return Primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave y parámetro son los indicados como parámetros.
+     * @param param ParÃ¡metro buscado.
+     * @return Primer nodo de la lista de nodos hijos del nodo actual cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metros.
      */
     public RtfTreeNode selectSingleChildNode(String keyword, int param)
     {
@@ -361,9 +361,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve el primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * @return Primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSingleChildGroup(String keyword)
     {
@@ -371,10 +371,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve el primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param ignoreSpecial Si está activo se ignorarán los nodos de control '\*' previos a algunas palabras clave.
-     * @return Primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * @param ignoreSpecial Si estÃ¡ activo se ignorarÃ¡n los nodos de control '\*' previos a algunas palabras clave.
+     * @return Primer nodo grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSingleChildGroup(String keyword, boolean ignoreSpecial)
     {
@@ -405,9 +405,9 @@ public class RtfTreeNode //In Sync
     }
  
     /**
-     * Devuelve el primer nodo del árbol, a partir del nodo actual, cuyo tipo es el indicado como parámetro.
+     * Devuelve el primer nodo del Ã¡rbol, a partir del nodo actual, cuyo tipo es el indicado como parÃ¡metro.
      * @param nodeType Tipo del nodo buscado.
-     * @return Primer nodo del árbol, a partir del nodo actual, cuyo tipo es el indicado como parámetro.
+     * @return Primer nodo del Ã¡rbol, a partir del nodo actual, cuyo tipo es el indicado como parÃ¡metro.
      */
     public RtfTreeNode selectSingleNode(int nodeType)
     {
@@ -442,9 +442,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve el primer nodo del árbol, a partir del nodo actual, cuya palabra clave es la indicada como parámetro.
+     * Devuelve el primer nodo del Ã¡rbol, a partir del nodo actual, cuya palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Primer nodo del árbol, a partir del nodo actual, cuya palabra clave es la indicada como parámetro.
+     * @return Primer nodo del Ã¡rbol, a partir del nodo actual, cuya palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSingleNode(String keyword)
     {
@@ -479,9 +479,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el primer nodo grupo del árbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve el primer nodo grupo del Ã¡rbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Primer nodo grupo del árbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * @return Primer nodo grupo del Ã¡rbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSingleGroup(String keyword)
     {
@@ -489,10 +489,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el primer nodo grupo del árbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve el primer nodo grupo del Ã¡rbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param ignoreSpecial Si está activo se ignorarán los nodos de control '\*' previos a algunas palabras clave.
-     * @return Primer nodo grupo del árbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * @param ignoreSpecial Si estÃ¡ activo se ignorarÃ¡n los nodos de control '\*' previos a algunas palabras clave.
+     * @return Primer nodo grupo del Ã¡rbol, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSingleGroup(String keyword, boolean ignoreSpecial)
     {
@@ -532,10 +532,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el primer nodo del árbol, a partir del nodo actual, cuya palabra clave y parámetro son los indicados como parámetro.
+     * Devuelve el primer nodo del Ã¡rbol, a partir del nodo actual, cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param param Parámetro buscado.
-     * @return Primer nodo del árbol, a partir del nodo actual, cuya palabra clave y parámetro son ls indicados como parámetro.
+     * @param param ParÃ¡metro buscado.
+     * @return Primer nodo del Ã¡rbol, a partir del nodo actual, cuya palabra clave y parÃ¡metro son ls indicados como parÃ¡metro.
      */
     public RtfTreeNode selectSingleNode(String keyword, int param)
     {
@@ -570,9 +570,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve todos los nodos, a partir del nodo actual, cuya palabra clave es la indicada como parámetro.
+     * Devuelve todos los nodos, a partir del nodo actual, cuya palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Colección de nodos, a partir del nodo actual, cuya palabra clave es la indicada como parámetro.
+     * @return ColecciÃ³n de nodos, a partir del nodo actual, cuya palabra clave es la indicada como parÃ¡metro.
      */
     public RtfNodeCollection selectNodes(String keyword)
     {
@@ -595,9 +595,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve todos los nodos, a partir del nodo actual, cuyo tipo es el indicado como parámetro.
+     * Devuelve todos los nodos, a partir del nodo actual, cuyo tipo es el indicado como parÃ¡metro.
      * @param nodeType Tipo del nodo buscado.
-     * @return Colección de nodos, a partir del nodo actual, cuyo tipo es la indicado como parámetro.
+     * @return ColecciÃ³n de nodos, a partir del nodo actual, cuyo tipo es la indicado como parÃ¡metro.
      */
     public RtfNodeCollection selectNodes(int nodeType)
     {
@@ -620,9 +620,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve todos los nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve todos los nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Colección de nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * @return ColecciÃ³n de nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfNodeCollection selectGroups(String keyword)
     {
@@ -630,10 +630,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve todos los nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve todos los nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param ignoreSpecial Si está activo se ignorarán los nodos de control '\*' previos a algunas palabras clave.
-     * @return Colección de nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parámetro.
+     * @param ignoreSpecial Si estÃ¡ activo se ignorarÃ¡n los nodos de control '\*' previos a algunas palabras clave.
+     * @return ColecciÃ³n de nodos grupo, a partir del nodo actual, cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfNodeCollection selectGroups(String keyword, boolean ignoreSpecial)
     {
@@ -662,10 +662,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve todos los nodos, a partir del nodo actual, cuya palabra clave y parámetro son los indicados como parámetro.
+     * Devuelve todos los nodos, a partir del nodo actual, cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param param Parámetro buscado.
-     * @return Colección de nodos, a partir del nodo actual, cuya palabra clave y parámetro son los indicados como parámetro.
+     * @param param ParÃ¡metro buscado.
+     * @return ColecciÃ³n de nodos, a partir del nodo actual, cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      */
     public RtfNodeCollection selectNodes(String keyword, int param)
     {
@@ -690,9 +690,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve todos los nodos de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parámetro.
+     * Devuelve todos los nodos de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Colección de nodos de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parámetro.
+     * @return ColecciÃ³n de nodos de la lista de nodos hijos del nodo actual cuya palabra clave es la indicada como parÃ¡metro.
      */
     public RtfNodeCollection selectChildNodes(String keyword)
     {
@@ -713,9 +713,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve todos los nodos grupos de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve todos los nodos grupos de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Colección de nodos grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * @return ColecciÃ³n de nodos grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfNodeCollection selectChildGroups(String keyword)
     {
@@ -723,10 +723,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve todos los nodos grupos de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * Devuelve todos los nodos grupos de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param ignoreSpecial Si está activo se ignorarán los nodos de control '\*' previos a algunas palabras clave.
-     * @return Colección de nodos grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parámetro.
+     * @param ignoreSpecial Si estÃ¡ activo se ignorarÃ¡n los nodos de control '\*' previos a algunas palabras clave.
+     * @return ColecciÃ³n de nodos grupo de la lista de nodos hijos del nodo actual cuya primera palabra clave es la indicada como parÃ¡metro.
      */
     public RtfNodeCollection selectChildGroups(String keyword, boolean ignoreSpecial)
     {
@@ -753,9 +753,9 @@ public class RtfTreeNode //In Sync
     }
 
     /**
-     * Devuelve todos los nodos de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parámetro.
+     * Devuelve todos los nodos de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parÃ¡metro.
      * @param nodeType Tipo del nodo buscado.
-     * @return Colección de nodos de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parámetro.
+     * @return ColecciÃ³n de nodos de la lista de nodos hijos del nodo actual cuyo tipo es el indicado como parÃ¡metro.
      */
     public RtfNodeCollection selectChildNodes(int nodeType)
     {
@@ -775,10 +775,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve todos los nodos de la lista de nodos hijos del nodo actual cuya palabra clave y parámetro son los indicados como parámetro.
+     * Devuelve todos los nodos de la lista de nodos hijos del nodo actual cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param param Parámetro buscado.
-     * @return Colección de nodos de la lista de nodos hijos del nodo actual cuya palabra clave y parámetro son los indicados como parámetro.
+     * @param param ParÃ¡metro buscado.
+     * @return ColecciÃ³n de nodos de la lista de nodos hijos del nodo actual cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      */
     public RtfNodeCollection selectChildNodes(String keyword, int param)
     {
@@ -801,9 +801,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el siguiente nodo hermano del actual cuya palabra clave es la indicada como parámetro.
+     * Devuelve el siguiente nodo hermano del actual cuya palabra clave es la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Primer nodo hermano del actual cuya palabra clave es la indicada como parámetro.
+     * @return Primer nodo hermano del actual cuya palabra clave es la indicada como parÃ¡metro.
      */
     public RtfTreeNode selectSibling(String keyword)
     {
@@ -833,9 +833,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el siguiente nodo hermano del actual cuyo tipo es el indicado como parámetro.
+     * Devuelve el siguiente nodo hermano del actual cuyo tipo es el indicado como parÃ¡metro.
      * @param nodeType Tipo de nodo buscado.
-     * @return Primer nodo hermano del actual cuyo tipo es el indicado como parámetro.
+     * @return Primer nodo hermano del actual cuyo tipo es el indicado como parÃ¡metro.
      */
     public RtfTreeNode selectSibling(int nodeType)
     {
@@ -865,10 +865,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el siguiente nodo hermano del actual cuya palabra clave y parámetro son los indicados como parámetro.
+     * Devuelve el siguiente nodo hermano del actual cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @param param Parámetro buscado.
-     * @return Primer nodo hermano del actual cuya palabra clave y parámetro son los indicados como parámetro.
+     * @param param ParÃ¡metro buscado.
+     * @return Primer nodo hermano del actual cuya palabra clave y parÃ¡metro son los indicados como parÃ¡metro.
      */
     public RtfTreeNode selectSibling(String keyword, int param)
     {
@@ -946,7 +946,7 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve una representación del nodo donde se indica su tipo, clave, indicador de parámetro y valor de parámetro
+     * Devuelve una representaciÃ³n del nodo donde se indica su tipo, clave, indicador de parÃ¡metro y valor de parÃ¡metro
      * @return Cadena de caracteres del tipo [TIPO, CLAVE, IND_PARAMETRO, VAL_PARAMETRO]
      */
     public String toString()
@@ -956,12 +956,12 @@ public class RtfTreeNode //In Sync
     
     //----------------------------------------------------------------
     
-    //Métodos Privados
+    //MÃ©todos Privados
     
     /**
-     * Decodifica un caracter especial indicado por su código decimal
-     * @param code Código del caracter especial (\')
-     * @param enc Codificación utilizada para decodificar el caracter especial.
+     * Decodifica un caracter especial indicado por su cÃ³digo decimal
+     * @param code CÃ³digo del caracter especial (\')
+     * @param enc CodificaciÃ³n utilizada para decodificar el caracter especial.
      * @return Caracter especial decodificado.
      */
     private static String decodeControlChar(int code, Charset enc)
@@ -970,8 +970,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el código RTF del nodo actual y todos sus nodos hijos.
-     * @return Código RTF del nodo actual y todos sus nodos hijos.
+     * Devuelve el cÃ³digo RTF del nodo actual y todos sus nodos hijos.
+     * @return CÃ³digo RTF del nodo actual y todos sus nodos hijos.
      */
     public String getRtf()
     {
@@ -985,10 +985,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Método auxiliar para obtener el Texto RTF del nodo actual a partir de su representación en árbol.
-     * @param curNode Nodo actual del árbol.
+     * MÃ©todo auxiliar para obtener el Texto RTF del nodo actual a partir de su representaciÃ³n en Ã¡rbol.
+     * @param curNode Nodo actual del Ã¡rbol.
      * @param prevNode Nodo anterior tratado.
-     * @param enc Codificación del documento.
+     * @param enc CodificaciÃ³n del documento.
      * @return Texto en formato RTF del nodo. 
      */
     private String getRtfInm(RtfTreeNode curNode, RtfTreeNode prevNode, Charset enc)
@@ -1040,7 +1040,7 @@ public class RtfTreeNode //In Sync
         //Se obtienen los nodos hijos
         RtfNodeCollection children = curNode.children;
 
-        //Si el nodo tiene hijos se obtiene el código RTF de los hijos
+        //Si el nodo tiene hijos se obtiene el cÃ³digo RTF de los hijos
         if (children != null)
         {
 	        for (int i = 0; i < children.size(); i++)
@@ -1063,10 +1063,10 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Concatena dos cadenas utilizando la codificación del documento.
+     * Concatena dos cadenas utilizando la codificaciÃ³n del documento.
      * @param res Cadena original.
-     * @param s Cadena a añadir.
-     * @param enc Codificación del documento.
+     * @param s Cadena a aÃ±adir.
+     * @param enc CodificaciÃ³n del documento.
      */
     private void appendEncoded(StringBuilder res, String s, Charset enc)
     {
@@ -1093,9 +1093,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Obtiene el código hexadecimal de un entero.
-     * @param code Número entero.
-     * @return Código hexadecimal del entero pasado como parámetro.
+     * Obtiene el cÃ³digo hexadecimal de un entero.
+     * @param code NÃºmero entero.
+     * @return CÃ³digo hexadecimal del entero pasado como parÃ¡metro.
      */
     private String getHexa(int code)
     {
@@ -1115,13 +1115,13 @@ public class RtfTreeNode //In Sync
      */
     private void updateNodeRoot(RtfTreeNode node)
     {
-        //Se asigna el nodo raíz del documento
+        //Se asigna el nodo raÃ­z del documento
         node.root = this.root;
 
-        //Se asigna el árbol propietario del nodo
+        //Se asigna el Ã¡rbol propietario del nodo
         node.tree = this.tree;
 
-        //Si el nodo actualizado tiene hijos se actualizan también
+        //Si el nodo actualizado tiene hijos se actualizan tambiÃ©n
         if (node.children != null)
         {
             //Se actualizan recursivamente los hijos del nodo actual
@@ -1134,7 +1134,7 @@ public class RtfTreeNode //In Sync
     
     /**
      * Devuelve el fragmento de texto del documento contenido en el nodo actual.
-     * @param raw Si este parámetro está activado se extraerá todo el texto contenido en el nodo, independientemente de si éste forma parte del texto real del documento.
+     * @param raw Si este parÃ¡metro estÃ¡ activado se extraerÃ¡ todo el texto contenido en el nodo, independientemente de si Ã©ste forma parte del texto real del documento.
      * @return Fragmento de texto del documento contenido en el nodo actual.
      */
     public String getText(boolean raw)
@@ -1144,7 +1144,7 @@ public class RtfTreeNode //In Sync
     
     /**
      * Devuelve todo el texto contenido en el nodo actual.
-     * @param raw Si este parámetro está activado se extraerá todo el texto contenido en el nodo, independientemente de si éste forma parte del texto real del documento.
+     * @param raw Si este parÃ¡metro estÃ¡ activado se extraerÃ¡ todo el texto contenido en el nodo, independientemente de si Ã©ste forma parte del texto real del documento.
      * @param ignoreNchars Ignore next N chars following \\uN keyword
      * @return Texto contenido en el nodo actual.
      */
@@ -1193,7 +1193,7 @@ public class RtfTreeNode //In Sync
             String newtext = this.getNodeKey();
 
             //Si el elemento anterior era un caracater Unicode (\\uN) ignoramos los siguientes N caracteres
-            //según la última etiqueta \\ucN
+            //segÃºn la Ãºltima etiqueta \\ucN
             if (this.previousNode().getNodeType() == RtfNodeType.KEYWORD &&
                 this.previousNode().getNodeKey().equals("u"))
             {
@@ -1211,15 +1211,15 @@ public class RtfTreeNode //In Sync
             else if (this.getNodeKey().equals("line"))
                 res.append(System.getProperty("line.separator"));
             else if (this.getNodeKey().equals("lquote"))
-                res.append("‘");
+                res.append("â€˜");
             else if (this.getNodeKey().equals("rquote"))
-                res.append("’");
+                res.append("â€™");
             else if (this.getNodeKey().equals("ldblquote"))
-                res.append("“");
+                res.append("â€œ");
             else if (this.getNodeKey().equals("rdblquote"))
-                res.append("”");
+                res.append("â€");
             else if (this.getNodeKey().equals("emdash"))
-                res.append("—");
+                res.append("â€”");
             else if (this.getNodeKey().equals("u"))
             {
                 res.append(Character.toChars(this.getParameter()));
@@ -1230,8 +1230,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Obtiene el nodo raíz del árbol RTF.
-     * @return Nodo raíz del árbol RTF.
+     * Obtiene el nodo raÃ­z del Ã¡rbol RTF.
+     * @return Nodo raÃ­z del Ã¡rbol RTF.
      */
     public RtfTreeNode getRootNode()
     {
@@ -1239,8 +1239,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Establece el nodo raíz del árbol RTF.
-     * @param node Nodo raíz del árbol RTF.
+     * Establece el nodo raÃ­z del Ã¡rbol RTF.
+     * @param node Nodo raÃ­z del Ã¡rbol RTF.
      */
     public void setRootNode(RtfTreeNode node)
     {
@@ -1302,8 +1302,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Obtiene el indicativo de existencia de parámetro asociado al nodo.
-     * @return Indicativo de existencia de parámetro asociado al nodo.
+     * Obtiene el indicativo de existencia de parÃ¡metro asociado al nodo.
+     * @return Indicativo de existencia de parÃ¡metro asociado al nodo.
      */
     public boolean getHasParameter()
     {
@@ -1311,8 +1311,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Establece el indicativo de existencia de parámetro asociado al nodo.
-     * @param hasParam Indicativo de existencia de parámetro asociado al nodo.
+     * Establece el indicativo de existencia de parÃ¡metro asociado al nodo.
+     * @param hasParam Indicativo de existencia de parÃ¡metro asociado al nodo.
      */
     public void setHasParamenter(boolean hasParam)
     {
@@ -1320,8 +1320,8 @@ public class RtfTreeNode //In Sync
     }    
     
     /**
-     * Obtiene el parámetro asociado al nodo.
-     * @return Parámetro asociado al nodo.
+     * Obtiene el parÃ¡metro asociado al nodo.
+     * @return ParÃ¡metro asociado al nodo.
      */
     public int getParameter()
     {
@@ -1329,8 +1329,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Establece el parámetro asociado al nodo.
-     * @param param Parámetro asociado al nodo.
+     * Establece el parÃ¡metro asociado al nodo.
+     * @param param ParÃ¡metro asociado al nodo.
      */
     public void setParameter(int param)
     {
@@ -1338,8 +1338,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Obtiene el árbol RTF padre del nodo.
-     * @return Árbol RTF padre del nodo.
+     * Obtiene el Ã¡rbol RTF padre del nodo.
+     * @return Ãrbol RTF padre del nodo.
      */
     public RtfTree getTree()
     {
@@ -1347,8 +1347,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Establece el árbol RTF padre del nodo.
-     * @param tree Árbol RTF padre del nodo.
+     * Establece el Ã¡rbol RTF padre del nodo.
+     * @param tree Ãrbol RTF padre del nodo.
      */
     public void setTree(RtfTree tree)
     {
@@ -1356,8 +1356,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Obtienen la colección de nodos hijo del nodo actual.
-     * @return Colección de nodos hijo del nodo actual.
+     * Obtienen la colecciÃ³n de nodos hijo del nodo actual.
+     * @return ColecciÃ³n de nodos hijo del nodo actual.
      */
     public RtfNodeCollection getChildNodes()
     {
@@ -1365,8 +1365,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Establece la colección de nodos hijo del nodo actual.
-     * @param children Colección de nodos hijo del nodo actual.
+     * Establece la colecciÃ³n de nodos hijo del nodo actual.
+     * @param children ColecciÃ³n de nodos hijo del nodo actual.
      */
     public void setChildNodes(RtfNodeCollection children)
     {
@@ -1384,9 +1384,9 @@ public class RtfTreeNode //In Sync
     }
        
     /**
-     * Devuelve el primer nodo hijo cuya palabra clave sea la indicada como parámetro.
+     * Devuelve el primer nodo hijo cuya palabra clave sea la indicada como parÃ¡metro.
      * @param keyword Palabra clave buscada.
-     * @return Primer nodo hijo cuya palabra clave sea la indicada como parámetro. En caso de no existir se devuelve null.
+     * @return Primer nodo hijo cuya palabra clave sea la indicada como parÃ¡metro. En caso de no existir se devuelve null.
      */
     public RtfTreeNode getChild(String keyword)
     {
@@ -1394,9 +1394,9 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el hijo n-ésimo del nodo actual.
-     * @param keyword Índice del nodo hijo a recuperar.
-     * @return Nodo hijo n-ésimo del nodo actual. Devuelve null en caso de no existir.
+     * Devuelve el hijo n-Ã©simo del nodo actual.
+     * @param keyword Ãndice del nodo hijo a recuperar.
+     * @return Nodo hijo n-Ã©simo del nodo actual. Devuelve null en caso de no existir.
      */
     public RtfTreeNode getChild(int childIndex)
     {
@@ -1423,8 +1423,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Obtiene el último nodo hijo del nodo actual.
-     * @return Último nodo hijo del nodo actual.
+     * Obtiene el Ãºltimo nodo hijo del nodo actual.
+     * @return Ãšltimo nodo hijo del nodo actual.
      */
     public RtfTreeNode lastChild()
     {
@@ -1475,8 +1475,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el nodo siguiente del árbol.
-     * @return Nodo siguiente del árbol.
+     * Devuelve el nodo siguiente del Ã¡rbol.
+     * @return Nodo siguiente del Ã¡rbol.
      */
     public RtfTreeNode nextNode()
     {
@@ -1509,8 +1509,8 @@ public class RtfTreeNode //In Sync
     }
     
     /**
-     * Devuelve el nodo anterior del árbol.
-     * @return Nodo anterior del árbol.
+     * Devuelve el nodo anterior del Ã¡rbol.
+     * @return Nodo anterior del Ã¡rbol.
      */
     public RtfTreeNode previousNode()
     {
@@ -1543,8 +1543,8 @@ public class RtfTreeNode //In Sync
     }
        
     /**
-     * Devuelve el índice del nodo actual dentro de la lista de hijos de su nodo padre.
-     * @return Índice del nodo actual dentro de la lista de hijos de su nodo padre.
+     * Devuelve el Ã­ndice del nodo actual dentro de la lista de hijos de su nodo padre.
+     * @return Ãndice del nodo actual dentro de la lista de hijos de su nodo padre.
      */
     public int getIndex()
     {

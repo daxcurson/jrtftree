@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfDocument
- * Description:	Clase para la generaciÛn de documentos RTF.
+ * Description:	Clase para la generaci√≥n de documentos RTF.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.util;
@@ -55,7 +55,7 @@ public class RtfDocument //In Sync
     
     /**
      * Constructor de la clase RtfDocument.
-     * @param enc CodificaciÛn del documento a generar.
+     * @param enc Codificaci√≥n del documento a generar.
      */
     public RtfDocument(Charset enc)
     {
@@ -77,7 +77,7 @@ public class RtfDocument //In Sync
     }
 
     /**
-     * Constructor de la clase RtfDocument. Se utilizar· la codificaciÛn por defecto del sistema.
+     * Constructor de la clase RtfDocument. Se utilizar√° la codificaci√≥n por defecto del sistema.
      */
     public RtfDocument()
     {
@@ -120,8 +120,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inserta un n˙mero determinado de saltos de lÌnea en el documento.
-     * @param n N˙mero de saltos de lÌnea a insertar.
+     * Inserta un n√∫mero determinado de saltos de l√≠nea en el documento.
+     * @param n N√∫mero de saltos de l√≠nea a insertar.
      */
     public void addNewLine(int n)
     {
@@ -130,7 +130,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inserta un salto de lÌnea en el documento.
+     * Inserta un salto de l√≠nea en el documento.
      */
     public void addNewLine()
     {
@@ -138,7 +138,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inicia un nuevo p·rrafo.
+     * Inicia un nuevo p√°rrafo.
      */
     public void addNewParagraph()
     {
@@ -146,8 +146,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inserta un n˙mero determinado de saltos de p·rrafo en el documento.
-     * @param n N˙mero de saltos de p·rrafo a insertar.
+     * Inserta un n√∫mero determinado de saltos de p√°rrafo en el documento.
+     * @param n N√∫mero de saltos de p√°rrafo a insertar.
      */
     public void addNewParagraph(int n)
     {
@@ -156,8 +156,8 @@ public class RtfDocument //In Sync
     }
   
     /**
-     * Inicia un nuevo p·rrafo con el formato especificado.
-     * @param format Formato del p·rrafo a insertar.
+     * Inicia un nuevo p√°rrafo con el formato especificado.
+     * @param format Formato del p√°rrafo a insertar.
      */
     public void addNewParagraph(RtfParFormat format)
     {
@@ -232,7 +232,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Establece el formato de p·rrafo por defecto.
+     * Establece el formato de p√°rrafo por defecto.
      */
     public void resetParFormat()
     {
@@ -240,7 +240,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Establece el formato de caracter y p·rrafo por defecto.
+     * Establece el formato de caracter y p√°rrafo por defecto.
      */
     public void resetFormat()
     {
@@ -261,7 +261,7 @@ public class RtfDocument //In Sync
     }
    
     /**
-     * Actualiza los valores de las propiedades de formato de texto y p·rrafo.
+     * Actualiza los valores de las propiedades de formato de texto y p√°rrafo.
      * @param format Formato de texto a insertar.
      */
     public void updateCharFormat(RtfCharFormat format)
@@ -318,8 +318,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Establece el formato de p·rrafo pasado como par·metro.
-     * @param format Formato de p·rrafo a utilizar.
+     * Establece el formato de p√°rrafo pasado como par√°metro.
+     * @param format Formato de p√°rrafo a utilizar.
      */
     public void updateParFormat(RtfParFormat format)
     {
@@ -329,8 +329,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Estable la alineaciÛn del texto dentro del p·rrafo.
-     * @param align Tipo de alineaciÛn.
+     * Estable la alineaci√≥n del texto dentro del p√°rrafo.
+     * @param align Tipo de alineaci√≥n.
      */
     public void setAlignment(int align)
     {
@@ -360,8 +360,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Establece la sangrÌa izquierda del p·rrafo.
-     * @param val SangrÌa izquierda en centÌmetros.
+     * Establece la sangr√≠a izquierda del p√°rrafo.
+     * @param val Sangr√≠a izquierda en cent√≠metros.
      */
     public void setLeftIndentation(float val)
     {
@@ -373,8 +373,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Establece la sangrÌa derecha del p·rrafo.
-     * @param val SangrÌa derecha en centÌmetros.
+     * Establece la sangr√≠a derecha del p√°rrafo.
+     * @param val Sangr√≠a derecha en cent√≠metros.
      */
     public void setRightIndentation(float val)
     {
@@ -446,8 +446,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Establece el tamaÒo de fuente actual.
-     * @param val TamaÒo de la fuente.
+     * Establece el tama√±o de fuente actual.
+     * @param val Tama√±o de la fuente.
      */
     public void setFormatSize(int val)
     {
@@ -490,8 +490,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Obtiene el cÛdigo RTF del documento RTF.
-     * @return CÛdigo RTF del documento RTF.
+     * Obtiene el c√≥digo RTF del documento RTF.
+     * @return C√≥digo RTF del documento RTF.
      */
     public String getRtf()
     {
@@ -499,7 +499,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Obtiene el ·rbol RTF del documento actual.
+     * Obtiene el √°rbol RTF del documento actual.
      * @return Arbol RTF del documento actual.
      */
     public RtfTree getTree()
@@ -508,8 +508,8 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Obtiene el ·rbol RTF equivalente al documento actual.
-     * @return ¡rbol RTF equivalente al documento en el estado actual.
+     * Obtiene el √°rbol RTF equivalente al documento actual.
+     * @return √Årbol RTF equivalente al documento en el estado actual.
      */
     private RtfTree GetTree()
     {
@@ -527,9 +527,9 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Obtiene el cÛdigo hexadecimal de un entero.
-     * @param code N˙mero entero.
-     * @return CÛdigo hexadecimal del entero pasado como par·metro.
+     * Obtiene el c√≥digo hexadecimal de un entero.
+     * @param code N√∫mero entero.
+     * @return C√≥digo hexadecimal del entero pasado como par√°metro.
      */
     private String getHexa(int code)
     {
@@ -544,7 +544,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inserta el cÛdigo RTF de la tabla de fuentes en el documento.
+     * Inserta el c√≥digo RTF de la tabla de fuentes en el documento.
      */
     private void insertFontTable(RtfTree tree)
     {
@@ -566,7 +566,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inserta el cÛdigo RTF de la tabla de colores en el documento.
+     * Inserta el c√≥digo RTF de la tabla de colores en el documento.
      */
     private void insertColorTable(RtfTree tree)
     {
@@ -586,7 +586,7 @@ public class RtfDocument //In Sync
     }
     
     /**
-     * Inserta el cÛdigo RTF de la aplicaciÛn generadora del documento.
+     * Inserta el c√≥digo RTF de la aplicaci√≥n generadora del documento.
      */
     private void insertGenerator(RtfTree tree)
     {
@@ -717,9 +717,9 @@ public class RtfDocument //In Sync
     }
 
     /// <summary>
-    /// Convierte entre centÌmetros y twips.
+    /// Convierte entre cent√≠metros y twips.
     /// </summary>
-    /// <param name="centimeters">Valor en centÌmetros.</param>
+    /// <param name="centimeters">Valor en cent√≠metros.</param>
     /// <returns>Valor en twips.</returns>
     private int calcTwips(float centimeters)
     {

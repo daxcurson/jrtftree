@@ -1,4 +1,4 @@
-/********************************************************************************
+﻿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		InfoGroup
- * Description:	Representa un documento RTF en forma de �rbol.
+ * Description:	Representa un documento RTF en forma de árbol.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.util;

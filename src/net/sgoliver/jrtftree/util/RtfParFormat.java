@@ -1,4 +1,4 @@
-/********************************************************************************
+﻿/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:		https://github.com/sgolivernet/jrtftree
  * Class:		RtfParFormat
- * Description:	Representa un formato de p�rrafo.
+ * Description:	Representa un formato de párrafo.
  * ******************************************************************************/
 
 package net.sgoliver.jrtftree.util;

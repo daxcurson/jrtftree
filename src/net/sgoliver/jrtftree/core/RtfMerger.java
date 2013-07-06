@@ -1,4 +1,4 @@
-/********************************************************************************
+Ôªø/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -51,7 +51,7 @@ public class RtfMerger //In Sync
         baseRtfDoc = new RtfTree();
         baseRtfDoc.loadRtfFile(templatePath);
 
-        //Se crea la lista de par·metros de sustituciÛn (placeholders)
+        //Se crea la lista de par√°metros de sustituci√≥n (placeholders)
         placeHolder = new Hashtable<String, RtfTree>();
     }
     
@@ -60,12 +60,12 @@ public class RtfMerger //In Sync
      */
     public RtfMerger()
     {
-        //Se crea la lista de par·metros de sustituciÛn (placeholders)
+        //Se crea la lista de par√°metros de sustituci√≥n (placeholders)
         placeHolder = new Hashtable<String, RtfTree>();
     }
 
     /**
-     * Asocia un nuevo par·metro de sustituciÛn (placeholder) con la ruta del documento a insertar. 
+     * Asocia un nuevo par√°metro de sustituci√≥n (placeholder) con la ruta del documento a insertar. 
      * @param ph Nombre del placeholder.
      * @param path Ruta del documento a insertar.
      */
@@ -82,9 +82,9 @@ public class RtfMerger //In Sync
     }
     
     /**
-     * Asocia un nuevo par·metro de sustituciÛn (placeholder) con el documento a insertar. 
+     * Asocia un nuevo par√°metro de sustituci√≥n (placeholder) con el documento a insertar. 
      * @param ph Nombre del placeholder.
-     * @param docTree ¡rbol RTF del documento a insertar.
+     * @param docTree √Årbol RTF del documento a insertar.
      */
     public void addPlaceHolder(String ph, RtfTree docTree)
     {
@@ -92,7 +92,7 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Desasocia un par·metro de sustituciÛn (placeholder) con la ruta del documento a insertar.
+     * Desasocia un par√°metro de sustituci√≥n (placeholder) con la ruta del documento a insertar.
      * @param ph Nombre del placeholder.
      */
     public void removePlaceHolder(String ph)
@@ -101,22 +101,22 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Realiza la combinaciÛn de los documentos RTF.
-     * @param removeLastPar Indica si se debe eliminar el ˙ltimo nodo \par de los documentos insertados en la plantilla.
-     * @return Devuelve el ·rbol RTF resultado de la fusiÛn.
+     * Realiza la combinaci√≥n de los documentos RTF.
+     * @param removeLastPar Indica si se debe eliminar el √∫ltimo nodo \par de los documentos insertados en la plantilla.
+     * @return Devuelve el √°rbol RTF resultado de la fusi√≥n.
      */
     public RtfTree merge(boolean removeLastPar)
     {
-    	//Indicativo de eliminaciÛn del ˙ltimo nodo \par para documentos insertados
+    	//Indicativo de eliminaci√≥n del √∫ltimo nodo \par para documentos insertados
         this.removeLastPar = removeLastPar;
         
-        //Se obtiene el grupo principal del ·rbol
+        //Se obtiene el grupo principal del √°rbol
         RtfTreeNode parentNode = baseRtfDoc.getMainGroup();
 
         //Si el documento tiene grupo principal
         if (parentNode != null)
         {
-            //Se analiza el texto del documento en busca de par·metros de reemplazo y se combinan los documentos
+            //Se analiza el texto del documento en busca de par√°metros de reemplazo y se combinan los documentos
             analizeTextContent(parentNode);
         }
 
@@ -124,8 +124,8 @@ public class RtfMerger //In Sync
     }
     
     /**
-     * Realiza la combinaciÛn de los documentos RTF.
-     * @return Devuelve el ·rbol RTF resultado de la fusiÛn.
+     * Realiza la combinaci√≥n de los documentos RTF.
+     * @return Devuelve el √°rbol RTF resultado de la fusi√≥n.
      */
     public RtfTree merge()
     {
@@ -133,8 +133,8 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Devuelve la lista de par·metros de sustituciÛn con el formato: [string, RtfTree]
-     * @return Lista de par·metros de sustituciÛn con el formato: [string, RtfTree]
+     * Devuelve la lista de par√°metros de sustituci√≥n con el formato: [string, RtfTree]
+     * @return Lista de par√°metros de sustituci√≥n con el formato: [string, RtfTree]
      */
     public Hashtable<String, RtfTree> getPlaceholders()
     {
@@ -142,8 +142,8 @@ public class RtfMerger //In Sync
     }
     
     /**
-     * Obtiene el ·rbol RTF del documento plantilla.
-     * @return ¡rbol RTF del documento plantilla.
+     * Obtiene el √°rbol RTF del documento plantilla.
+     * @return √Årbol RTF del documento plantilla.
      */
     public RtfTree getTemplate()
     {
@@ -151,8 +151,8 @@ public class RtfMerger //In Sync
     }
     
     /**
-     * Establece el ·rbol RTF del documento plantilla.
-     * @return ¡rbol RTF del documento plantilla.
+     * Establece el √°rbol RTF del documento plantilla.
+     * @return √Årbol RTF del documento plantilla.
      */
     public void setTemplate(RtfTree template)
     {
@@ -160,8 +160,8 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Analiza el texto del documento en busca de par·metros de reemplazo y combina los documentos.
-     * @param parentNode Nodo del ·rbol a procesar.
+     * Analiza el texto del documento en busca de par√°metros de reemplazo y combina los documentos.
+     * @param parentNode Nodo del √°rbol a procesar.
      */
     private void analizeTextContent(RtfTreeNode parentNode)
     {
@@ -195,13 +195,13 @@ public class RtfMerger //In Sync
                         //Si se ha encontrado una etiqueta
                         if (indPH != -1)
                         {
-                            //Se recupera el ·rbol a insertar en la etiqueta actual
+                            //Se recupera el √°rbol a insertar en la etiqueta actual
                             docToInsert = placeHolder.get(ph).cloneTree();
 
-                            //Se inserta el nuevo ·rbol en el ·rbol base
+                            //Se inserta el nuevo √°rbol en el √°rbol base
                             mergeCore(parentNode, iNdIndex, docToInsert, ph, indPH);
 
-                            //Como puede que el nodo actual haya cambiado decrementamos el Ìndice
+                            //Como puede que el nodo actual haya cambiado decrementamos el √≠ndice
                             //y salimos del bucle para analizarlo de nuevo
                             iNdIndex--;
                             break;
@@ -221,16 +221,16 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Inserta un nuevo ·rbol en el lugar de una etiqueta de texto del ·rbol base.
-     * @param parentNode Nodo de tipo grupo que se est· procesando.
-     * @param iNdIndex Õndice (dentro del grupo padre) del nodo texto que se est· procesando.
-     * @param docToInsert Nuevo ·rbol RTF a insertar.
+     * Inserta un nuevo √°rbol en el lugar de una etiqueta de texto del √°rbol base.
+     * @param parentNode Nodo de tipo grupo que se est√° procesando.
+     * @param iNdIndex √çndice (dentro del grupo padre) del nodo texto que se est√° procesando.
+     * @param docToInsert Nuevo √°rbol RTF a insertar.
      * @param strCompletePlaceholder Texto del la etiqueta que se va a reemplazar.
-     * @param intPlaceHolderNodePos PosiciÛn de la etiqueta que se va a reemplazar dentro del nodo texto que se est· procesando.
+     * @param intPlaceHolderNodePos Posici√≥n de la etiqueta que se va a reemplazar dentro del nodo texto que se est√° procesando.
      */
     private void mergeCore(RtfTreeNode parentNode, int iNdIndex, RtfTree docToInsert, String strCompletePlaceholder, int intPlaceHolderNodePos)
     {
-        //Si el documento a insertar no est· vacÌo
+        //Si el documento a insertar no est√° vac√≠o
         if (docToInsert.getRootNode().hasChildNodes() == true)
         {
             int currentIndex = iNdIndex + 1;
@@ -241,17 +241,17 @@ public class RtfMerger //In Sync
             //Se combinan las tablas de fuentes y se ajustan las fuentes del documento a insertar
             mainAdjustFont(docToInsert);
 
-            //Se elimina la informaciÛn de cabecera del documento a insertar (colores, fuentes, info, ...)
+            //Se elimina la informaci√≥n de cabecera del documento a insertar (colores, fuentes, info, ...)
             cleanToInsertDoc(docToInsert);
 
             //Si el documento a insertar tiene contenido
             if (docToInsert.getRootNode().firstChild().hasChildNodes())
             {
-                //Se inserta el documento nuevo en el ·rbol base
+                //Se inserta el documento nuevo en el √°rbol base
                 execMergeDoc(parentNode, docToInsert, currentIndex);
             }
 
-            //Si la etiqueta no est· al final del nodo texto:
+            //Si la etiqueta no est√° al final del nodo texto:
             //Se inserta un nodo de texto con el resto del texto original (eliminando la etiqueta)
             if (parentNode.getChildNodes().get(iNdIndex).getNodeKey().length() != (intPlaceHolderNodePos + strCompletePlaceholder.length()))
             {
@@ -279,10 +279,10 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Obtiene el cÛdigo de la fuente pasada como par·metro, insert·ndola en la tabla de fuentes si es necesario.
+     * Obtiene el c√≥digo de la fuente pasada como par√°metro, insert√°ndola en la tabla de fuentes si es necesario.
      * @param fontDestTbl Tabla de fuentes resultante.
      * @param sFontName Fuente buscada.
-     * @return CÛdigo de la fuente pasada como par·metro
+     * @return C√≥digo de la fuente pasada como par√°metro
      */
     private int getFontID(RtfFontTable fontDestTbl, String sFontName)
     {
@@ -307,10 +307,10 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Obtiene el cÛdigo del color pasado como par·metro, insert·ndolo en la tabla de colores si es necesario.
+     * Obtiene el c√≥digo del color pasado como par√°metro, insert√°ndolo en la tabla de colores si es necesario.
      * @param colorDestTbl Tabla de colores resultante.
      * @param iColorName Color buscado.
-     * @return CÛdigo del color pasado como par·metro
+     * @return C√≥digo del color pasado como par√°metro
      */
     private int getColorID(RtfColorTable colorDestTbl, Color iColorName)
     {
@@ -346,7 +346,7 @@ public class RtfMerger //In Sync
 
     /**
      * Ajusta las fuentes del documento a insertar.
-     * @param parentNode Nodo grupo que se est· procesando.
+     * @param parentNode Nodo grupo que se est√° procesando.
      * @param fontDestTbl Tabla de fuentes resultante.
      * @param fontToCopyTbl Tabla de fuentes del documento a insertar.
      */
@@ -390,7 +390,7 @@ public class RtfMerger //In Sync
 
     /**
      * Ajusta los colores del documento a insertar.
-     * @param parentNode Nodo grupo que se est· procesando.
+     * @param parentNode Nodo grupo que se est√° procesando.
      * @param colorDestTbl Tabla de colores resultante.
      * @param colorToCopyTbl Tabla de colores del documento a insertar.
      */
@@ -428,23 +428,23 @@ public class RtfMerger //In Sync
     }
 
     /**
-     * Inserta el nuevo ·rbol en el ·rbol base (como un nuevo grupo) eliminando toda la cabecera del documento insertado.
-     * @param parentNode Grupo base en el que se insertar· el nuevo arbol.
-     * @param treeToCopyParent Nuevo ·rbol a insertar.
-     * @param intCurrIndex Õndice en el que se insertar· el nuevo ·rbol dentro del grupo base.
+     * Inserta el nuevo √°rbol en el √°rbol base (como un nuevo grupo) eliminando toda la cabecera del documento insertado.
+     * @param parentNode Grupo base en el que se insertar√° el nuevo arbol.
+     * @param treeToCopyParent Nuevo √°rbol a insertar.
+     * @param intCurrIndex √çndice en el que se insertar√° el nuevo √°rbol dentro del grupo base.
      */
     private void execMergeDoc(RtfTreeNode parentNode, RtfTree treeToCopyParent, int intCurrIndex)
     {
         //Se busca el primer "\pard" del documento (comienzo del texto)
         RtfTreeNode nodePard = treeToCopyParent.getRootNode().firstChild().selectSingleChildNode("pard");
 
-        //Se obtiene el Ìndice del nodo dentro del principal
+        //Se obtiene el √≠ndice del nodo dentro del principal
         int indPard = treeToCopyParent.getRootNode().firstChild().getChildNodes().indexOf(nodePard);
 
         //Se crea el nuevo grupo
         RtfTreeNode newGroup = new RtfTreeNode(RtfNodeType.GROUP);
 
-        //Se resetean las opciones de p·rrafo y fuente
+        //Se resetean las opciones de p√°rrafo y fuente
         newGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "pard", false, 0));
         newGroup.appendChild(new RtfTreeNode(RtfNodeType.KEYWORD, "plain", false, 0));
 
@@ -467,7 +467,7 @@ public class RtfMerger //In Sync
      */
     private void cleanToInsertDoc(RtfTree docToInsert)
     {
-        //Borra el ˙ltimo "\par" del documento si existe
+        //Borra el √∫ltimo "\par" del documento si existe
         RtfTreeNode lastNode = docToInsert.getRootNode().firstChild().lastChild();
 
         if (removeLastPar)
