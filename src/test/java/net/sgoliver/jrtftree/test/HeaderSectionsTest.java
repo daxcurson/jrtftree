@@ -1,4 +1,6 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.test;
+
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,15 +28,17 @@
  * Description:	Proyecto de Test para NRtfTree
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.test;
-
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import net.sgoliver.jrtftree.core.RtfTree;
 import net.sgoliver.jrtftree.util.InfoGroup;
@@ -43,23 +47,18 @@ import net.sgoliver.jrtftree.util.RtfFontTable;
 import net.sgoliver.jrtftree.util.RtfStyleSheetTable;
 import net.sgoliver.jrtftree.util.RtfStyleSheetType;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-public class HeaderSectionsTest //In Sync
+public class HeaderSectionsTest // In Sync
 {
-	private static RtfTree tree = null;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception 
-	{
+	private RtfTree tree = null;
+
+	@BeforeEach
+	public void setUpBeforeEach() throws Exception {
 		tree = new RtfTree();
-        tree.loadRtfFile("test\\testdocs\\testdoc2.rtf");
+		tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc2.rtf").getFile());
 	}
 
 	@Test
-	public void FontTableTest() 
-	{
+	public void FontTableTest() {
 		RtfFontTable fontTable = tree.getFontTable();
 
 		assertEquals(fontTable.size(), 3);
@@ -73,8 +72,7 @@ public class HeaderSectionsTest //In Sync
 	}
 
 	@Test
-	public void ColorTableTest() 
-	{
+	public void ColorTableTest() {
 		RtfColorTable colorTable = tree.getColorTable();
 
 		assertEquals(colorTable.size(), 3);
@@ -88,8 +86,7 @@ public class HeaderSectionsTest //In Sync
 	}
 
 	@Test
-	public void StyleSheetTableTest() 
-	{
+	public void StyleSheetTableTest() {
 		RtfStyleSheetTable styleTable = tree.getStyleSheetTable();
 
 		assertEquals(styleTable.size(), 7);
@@ -124,8 +121,7 @@ public class HeaderSectionsTest //In Sync
 	}
 
 	@Test
-	public void InfoGroupTest() 
-	{
+	public void InfoGroupTest() {
 		InfoGroup infoGroup = tree.getInfoGroup();
 
 		assertEquals(infoGroup.getTitle(), "Test NRtfTree Title");
@@ -152,28 +148,26 @@ public class HeaderSectionsTest //In Sync
 		assertNull(infoGroup.getLastPrintTime());
 		assertNull(infoGroup.getBackupTime());
 
-		String infoString = leerFichero("test\\testdocs\\infogroup.txt");
+		String infoString = leerFichero(getClass().getClassLoader().getResource("testdocs/infogroup.txt").getFile());
 
 		assertEquals(infoString.trim(), infoGroup.toString().trim());
 	}
-	
-	private String leerFichero(String path)
-	{
+
+	private String leerFichero(String path) {
 		StringBuilder text = new StringBuilder();
 		String NL = System.getProperty("line.separator");
-		
+
 		Scanner scanner = null;
-		
+
 		try {
-		    scanner = new Scanner(new FileInputStream(path), "UTF-8");
+			scanner = new Scanner(new FileInputStream(path), "UTF-8");
 
 			while (scanner.hasNextLine()) {
 				text.append(scanner.nextLine() + NL);
 			}
-		} catch(IOException ex) {
+		} catch (IOException ex) {
 			System.out.println("Error lectura.");
-		}
-		finally {
+		} finally {
 			scanner.close();
 		}
 

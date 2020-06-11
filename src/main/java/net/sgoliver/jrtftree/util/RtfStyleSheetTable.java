@@ -107,6 +107,7 @@ public class RtfStyleSheetTable //In Sync
 	 * @param name Nombre del estilo buscado.
 	 * @return Estilo cuyo nombre es el pasado como parámetro.
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	public int indexOf(String name)
     {
         int intIndex = -1;

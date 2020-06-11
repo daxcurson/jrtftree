@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.test;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,32 +27,30 @@
  * Description:	Proyecto de Test para NRtfTree
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.junit.jupiter.api.Test;
+
 import net.sgoliver.jrtftree.core.RtfMerger;
 import net.sgoliver.jrtftree.core.RtfTree;
-
-import org.junit.Test;
-
 
 public class MergeTest //In Sync
 {
 	@Test
 	public void MergeDocuments() 
 	{
-		RtfMerger merger = new RtfMerger("test\\testdocs\\merge-template.rtf");
-		merger.addPlaceHolder("$doc1$", "test\\testdocs\\merge-doc1.rtf");
-		merger.addPlaceHolder("$doc2$", "test\\testdocs\\merge-doc2.rtf");
+		RtfMerger merger = new RtfMerger(getClass().getClassLoader().getResource("testdocs/merge-template.rtf").getFile());
+		merger.addPlaceHolder("$doc1$", getClass().getClassLoader().getResource("testdocs/merge-doc1.rtf").getFile());
+		merger.addPlaceHolder("$doc2$", getClass().getClassLoader().getResource("testdocs/merge-doc2.rtf").getFile());
 
 		assertEquals(merger.getPlaceholders().size(), 2);
 
-		merger.addPlaceHolder("$doc3$", "test\\testdocs\\merge-doc2.rtf");
+		merger.addPlaceHolder("$doc3$", getClass().getClassLoader().getResource("testdocs/merge-doc2.rtf").getFile());
 
 		assertEquals(merger.getPlaceholders().size(), 3);
 
@@ -63,15 +62,16 @@ public class MergeTest //In Sync
 		
 		try
 		{
-			tree.saveRtf("test\\testdocs\\merge-result-1.rtf");
+			String directorio=getClass().getClassLoader().getResource("testdocs").getPath();
+			tree.saveRtf(directorio+"/merge-result-1.rtf");
 		}
 		catch(IOException ex)
 		{
 			;
 		}
 
-		String rtf1 = leerFichero("test\\testdocs\\merge-result-1.rtf");
-		String rtf3 = leerFichero("test\\testdocs\\rtf3.txt");
+		String rtf1 = leerFichero(getClass().getClassLoader().getResource("testdocs/merge-result-1.rtf").getFile());
+		String rtf3 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtf3.txt").getFile());
 
 		assertEquals(rtf3.trim(), rtf1.trim());
 	}
@@ -82,15 +82,15 @@ public class MergeTest //In Sync
 		RtfMerger merger = new RtfMerger();
 		
 		RtfTree tree = new RtfTree();
-		tree.loadRtfFile("test\\testdocs\\merge-template.rtf");
+		tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/merge-template.rtf").getFile());
 		
 		merger.setTemplate(tree);
 		
 		RtfTree ph1 = new RtfTree();
-        ph1.loadRtfFile("test\\testdocs\\merge-doc1.rtf");
+        ph1.loadRtfFile(getClass().getClassLoader().getResource("testdocs/merge-doc1.rtf").getFile());
 
         RtfTree ph2 = new RtfTree();
-        ph2.loadRtfFile("test\\testdocs\\merge-doc2.rtf");
+        ph2.loadRtfFile(getClass().getClassLoader().getResource("testdocs/merge-doc2.rtf").getFile());
 		
 		merger.addPlaceHolder("$doc1$", ph1);
 		merger.addPlaceHolder("$doc2$", ph2);
@@ -98,7 +98,7 @@ public class MergeTest //In Sync
 		assertEquals(merger.getPlaceholders().size(), 2);
 
 		RtfTree ph3 = new RtfTree();
-        ph3.loadRtfFile("test\\testdocs\\merge-doc2.rtf");
+        ph3.loadRtfFile(getClass().getClassLoader().getResource("testdocs/merge-doc2.rtf").getFile());
 		
 		merger.addPlaceHolder("$doc3$", ph3);
 
@@ -112,15 +112,16 @@ public class MergeTest //In Sync
 		
 		try
 		{
-			resTree.saveRtf("test\\testdocs\\merge-result-2.rtf");
+			String directorio=getClass().getClassLoader().getResource("testdocs").getPath();
+			resTree.saveRtf(directorio+"/merge-result-2.rtf");
 		}
 		catch(IOException ex)
 		{
 			;
 		}
 
-		String rtf1 = leerFichero("test\\testdocs\\merge-result-2.rtf");
-		String rtf3 = leerFichero("test\\testdocs\\rtf3.txt");
+		String rtf1 = leerFichero(getClass().getClassLoader().getResource("testdocs/merge-result-2.rtf").getFile());
+		String rtf3 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtf3.txt").getFile());
 
 		assertEquals(rtf3.trim(), rtf1.trim());
 	}

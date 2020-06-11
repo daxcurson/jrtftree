@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.test;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,15 +27,16 @@
  * Description:	Proyecto de Test para NRtfTree
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.test;
-
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import net.sgoliver.jrtftree.core.RtfNodeCollection;
 import net.sgoliver.jrtftree.core.RtfNodeType;
@@ -49,7 +51,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectChildNodes(RtfNodeType.KEYWORD);  //48 nodes
          RtfNodeCollection lista2 = tree.getMainGroup().selectChildNodes(RtfNodeType.CONTROL);  //3 nodes
@@ -80,7 +82,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectNodes(RtfNodeType.KEYWORD);  //69 nodes
          RtfNodeCollection lista2 = tree.getMainGroup().selectNodes(RtfNodeType.CONTROL);  //4 nodes
@@ -114,7 +116,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleNode(RtfNodeType.KEYWORD); //rtf1
          RtfTreeNode node2 = tree.getMainGroup().selectSingleNode(RtfNodeType.CONTROL); //* generator
@@ -134,7 +136,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleChildNode(RtfNodeType.KEYWORD); //rtf1
          RtfTreeNode node2 = tree.getMainGroup().selectSingleChildNode(RtfNodeType.CONTROL); //'233
@@ -154,7 +156,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectChildNodes("fs");  //5 nodes
          RtfNodeCollection lista2 = tree.getMainGroup().selectChildNodes("f");   //3 nodes
@@ -178,7 +180,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectNodes("fs");  //5 nodes
          RtfNodeCollection lista2 = tree.getMainGroup().selectNodes("f");   //6 nodes
@@ -205,7 +207,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleNode("fs"); 
          RtfTreeNode node2 = tree.getMainGroup().selectSingleNode("f");  
@@ -219,7 +221,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleChildNode("fs");
          RtfTreeNode node2 = tree.getMainGroup().selectSingleChildNode("f");
@@ -233,7 +235,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectChildNodes("fs", 24);  //2 nodes
          RtfNodeCollection lista2 = tree.getMainGroup().selectChildNodes("f", 1);    //1 nodes
@@ -252,7 +254,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectNodes("fs", 24);  //2 nodes
          RtfNodeCollection lista2 = tree.getMainGroup().selectNodes("f", 1);    //2 nodes
@@ -272,7 +274,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleNode("fs", 24);
          RtfTreeNode node2 = tree.getMainGroup().selectSingleNode("f", 1);
@@ -286,7 +288,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleChildNode("fs", 24);
          RtfTreeNode node2 = tree.getMainGroup().selectSingleChildNode("f", 1);
@@ -300,7 +302,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectChildGroups("colortbl");  //1 node
          RtfNodeCollection lista2 = tree.getMainGroup().selectChildGroups("f");         //0 nodes
@@ -316,7 +318,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection lista1 = tree.getMainGroup().selectGroups("colortbl");  //1 node
          RtfNodeCollection lista2 = tree.getMainGroup().selectGroups("f");         //3 nodes
@@ -336,7 +338,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().selectSingleGroup("f");
          RtfTreeNode node2 = tree.getMainGroup().getChildNodes().get(5).selectSingleChildGroup("f");
@@ -350,7 +352,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection list1 = tree.getMainGroup().selectChildGroups("generator");
          RtfNodeCollection list2 = tree.getMainGroup().selectChildGroups("generator", false);
@@ -390,7 +392,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfTreeNode node1 = tree.getMainGroup().getChildNodes().get(4);               //deflang3082
          RtfTreeNode node2 = tree.getMainGroup().getChildNodes().get(6).getChildNodes().get(2); //colortbl/red
@@ -417,7 +419,7 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          RtfNodeCollection list1 = tree.getMainGroup().findText("Italic");
 
@@ -435,11 +437,11 @@ public class SelectNodesTest //In Sync
      {
          RtfTree tree = new RtfTree();
 
-         tree.loadRtfFile("test\\testdocs\\testdoc1.rtf");
+         tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc1.rtf").getFile());
 
          tree.getMainGroup().replaceText("Italic", "REPLACED");
 
-         String rtf2 = leerFichero("test\\testdocs\\rtf2.txt");
+         String rtf2 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtf2.txt").getFile());
 
          assertEquals(tree.getRtf().trim(), rtf2.trim());
      }

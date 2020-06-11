@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.test;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,9 +27,8 @@
  * Description:	Proyecto de Test para NRtfTree
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Color;
 import java.io.FileInputStream;
@@ -36,12 +36,12 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
+import org.junit.jupiter.api.Test;
+
 import net.sgoliver.jrtftree.util.RtfCharFormat;
 import net.sgoliver.jrtftree.util.RtfDocument;
 import net.sgoliver.jrtftree.util.RtfParFormat;
 import net.sgoliver.jrtftree.util.TextAlignment;
-
-import org.junit.Test;
 
 
 public class RtfDocumentTest //In Sync
@@ -76,7 +76,8 @@ public class RtfDocumentTest //In Sync
 	
 		try
 		{
-			doc.save("test\\testdocs\\rtfdocument1.rtf");
+			String directorio=getClass().getClassLoader().getResource("testdocs").getPath();
+			doc.save(directorio+"/rtfdocument1.rtf");
 		}
 		catch(IOException ex)
 		{ ; }
@@ -119,17 +120,18 @@ public class RtfDocumentTest //In Sync
 
 		try
 		{
-			doc.save("test\\testdocs\\rtfdocument2.rtf");
+			String directorio=getClass().getClassLoader().getResource("testdocs").getPath();
+			doc.save(directorio+"/rtfdocument2.rtf");
 		}
 		catch(Exception ex)
 		{ ; }
 
-		String rtf1 = leerFichero("test\\testdocs\\rtfdocument1.rtf");
-		String rtf2 = leerFichero("test\\testdocs\\rtfdocument2.rtf");
-		String rtf4 = leerFichero("test\\testdocs\\rtf4.txt");
-		String rtf6 = leerFichero("test\\testdocs\\rtf6.txt");
-		String doctext1 = leerFichero("test\\testdocs\\doctext1.txt");
-		String doctext2 = leerFichero("test\\testdocs\\doctext2.txt").trim() + " Петяв ñáéíó\r\n\r\n\tStop.\r\n";
+		String rtf1 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtfdocument1.rtf").getFile());
+		String rtf2 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtfdocument2.rtf").getFile());
+		String rtf4 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtf4.txt").getFile());
+		String rtf6 = leerFichero(getClass().getClassLoader().getResource("testdocs/rtf6.txt").getFile());
+		String doctext1 = leerFichero(getClass().getClassLoader().getResource("testdocs/doctext1.txt").getFile());
+		String doctext2 = leerFichero(getClass().getClassLoader().getResource("testdocs/doctext2.txt").getFile()).trim() + " Петяв ñáéíó\n\n\tStop.\n";
 
 		//Se adapta el lenguaje al del PC donde se ejecutan los tests
         //int deflangInd = rtf4.IndexOf("\\deflang3082");

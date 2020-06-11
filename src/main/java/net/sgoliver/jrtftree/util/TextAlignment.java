@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.util;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -25,8 +26,6 @@
  * Class:		TextAlignment
  * Description:	Tipos de alineación de texto.
  * ******************************************************************************/
-
-package net.sgoliver.jrtftree.util;
 
 /**
  * Tipos de hojas de estilo de un documento RTF.

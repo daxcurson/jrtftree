@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.test;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,15 +27,17 @@
  * Description:	Proyecto de Test para NRtfTree
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
+import org.junit.jupiter.api.Test;
+
 import net.sgoliver.jrtftree.core.RtfNodeType;
 import net.sgoliver.jrtftree.core.RtfTree;
 import net.sgoliver.jrtftree.core.RtfTreeNode;
-
-import org.junit.Test;
-
 
 public class RtfTreeNodeTest //In Sync
 {
@@ -71,7 +74,7 @@ public class RtfTreeNodeTest //In Sync
 	public void textExtraction() {
 		RtfTree tree = new RtfTree();
 
-		tree.loadRtfFile("test\\testdocs\\testdoc4.rtf");
+		tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc4.rtf").getFile());
 
 		RtfTreeNode simpleGroup = tree.getMainGroup().selectSingleGroup("ul");
 		RtfTreeNode nestedGroups = tree.getMainGroup().selectSingleGroup("cf");
@@ -109,11 +112,11 @@ public class RtfTreeNodeTest //In Sync
 	public void textExtractionSpecial() {
 		RtfTree tree = new RtfTree();
 
-        tree.loadRtfFile("test\\testdocs\\testdoc5.rtf");
+        tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/testdoc5.rtf").getFile());
 
-        assertEquals("Esto es una ‘prueba’\r\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getText());
-        assertEquals("Esto es una ‘prueba’\r\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getMainGroup().getText());
-        assertEquals("Arial;Msftedit 5.41.15.1515;Esto es una ‘prueba’\r\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getMainGroup().getRawText());
+        assertEquals("Esto es una ‘prueba’\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getText());
+        assertEquals("Esto es una ‘prueba’\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getMainGroup().getText());
+        assertEquals("Arial;Msftedit 5.41.15.1515;Esto es una ‘prueba’\n\t y otra “prueba” y otra—prueba." + System.getProperty("line.separator"), tree.getMainGroup().getRawText());
 	}
 	
 	@Test
@@ -121,8 +124,8 @@ public class RtfTreeNodeTest //In Sync
     {
         RtfTree tree = new RtfTree();
 
-        tree.loadRtfFile("test\\testdocs\\unicodedoc.rtf");
+        tree.loadRtfFile(getClass().getClassLoader().getResource("testdocs/unicodedoc.rtf").getFile());
 
-        assertEquals("Prueba Unicode: Вова Петя\r\nSin ignorar caracteres: Вова Петя\r\n", tree.getText());
+        assertEquals("Prueba Unicode: Вова Петя\nSin ignorar caracteres: Вова Петя\n", tree.getText());
     }
 }
