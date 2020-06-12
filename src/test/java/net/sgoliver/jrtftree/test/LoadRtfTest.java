@@ -32,9 +32,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -142,23 +143,13 @@ public class LoadRtfTest // In Sync
 	}
 
 	private String leerFichero(String path) {
-		StringBuilder text = new StringBuilder();
-		String NL = System.getProperty("line.separator");
-
-		Scanner scanner = null;
-
+		String contenido="";
 		try {
-			scanner = new Scanner(new FileInputStream(path), "UTF-8");
-
-			while (scanner.hasNextLine()) {
-				text.append(scanner.nextLine() + NL);
-			}
+			contenido=new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
 		} catch (IOException ex) {
 			System.out.println("Error lectura.");
-		} finally {
-			scanner.close();
 		}
 
-		return text.toString();
+		return contenido;
 	}
 }
