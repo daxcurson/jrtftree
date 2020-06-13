@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.util;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,7 +27,6 @@
  * Description:	Representa un documento RTF en forma de árbol.
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
