@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.core;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,11 +27,12 @@
  * Description:	Representa un documento RTF en forma de árbol.
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.core;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+
+import net.sgoliver.jrtftree.util.RTFFilter;
 
 /**
  * Nodo RTF de la representación en árbol de un documento. 
@@ -237,9 +239,9 @@ public class RtfTreeNode //In Sync
         clon.key = this.key;
         clon.hasParam = this.hasParam;
         clon.param = this.param;
-        clon.parent = null;
-        clon.root = null;
-        clon.tree = null;
+        clon.parent = this.parent;
+        clon.root = this.root;
+        clon.tree = this.tree;
         clon.nodeType = this.nodeType;
 
         //Se clonan también cada uno de los hijos
@@ -260,7 +262,49 @@ public class RtfTreeNode //In Sync
 
         return clon;
     }
+	public void accept(RTFFilter v) 
+	{
+		v.filter(this);
+	}
+    /**
+     * Filtra el nodo con un Filtro
+     * @param filtro, que debe implementar el método filter, para recibir este nodo y hacer
+     * con él lo que le interese. 
+     * @return Devuelve una copia filtrada del nodo actual.
+     */
+    public RtfTreeNode filtrarNodo(RTFFilter filtro)
+    {
+        RtfTreeNode clon = new RtfTreeNode();
 
+        clon.key=this.key;
+        clon.hasParam=this.hasParam;
+        clon.param=this.param;
+        clon.parent=this.parent;
+        clon.root=this.root;
+        clon.tree=this.tree;
+        clon.nodeType=this.nodeType;
+
+        //Se clonan también cada uno de los hijos
+        clon.children=null;
+
+        // Bien, ahora, hago la razón de la existencia de este método: aplico
+        // el filtro al clon.
+        clon.accept(filtro);
+        if (this.children != null)
+        {
+            clon.children=new RtfNodeCollection();
+            
+            for(int i=0; i<children.size(); i++)
+            {
+            	RtfTreeNode childclon = children.get(i).filtrarNodo(filtro);
+            	childclon.parent=clon;
+            	
+            	clon.children.add(childclon);
+            }
+        }
+
+        return clon;
+    }
     /**
      * Indica si el nodo actual tiene nodos hijos.
      * @return Devuelve true si el nodo actual tiene algún nodo hijo.
@@ -1573,4 +1617,11 @@ public class RtfTreeNode //In Sync
     {
     	return getText(true);
     }
+
+	public void setText(String string) 
+	{
+		// Poco ortodoxo, pero simplemente le voy a enchufar el valor de texto
+		// al NodeKey y que sea lo que Dios quiera...
+		this.setNodeKey(string);
+	}
 }

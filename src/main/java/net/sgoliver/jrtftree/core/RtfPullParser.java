@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.core;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,7 +27,6 @@
  * Description:	Pull parser para documentos RTF.
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.core;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.core;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,7 +27,6 @@
  * Description:	Representa un documento RTF en forma de árbol.
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.core;
 
 /**
  * Esta clase, utilizada por RtfReader, contiene todos los métodos necesarios para tratar cada uno de 

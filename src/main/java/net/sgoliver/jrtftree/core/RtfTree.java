@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿package net.sgoliver.jrtftree.core;
+/********************************************************************************
  *   This file is part of NRtfTree Library.
  *
  *   JRtfTree Library is free software; you can redistribute it and/or modify
@@ -26,7 +27,6 @@
  * Description:	Representa un documento RTF en forma de árbol.
  * ******************************************************************************/
 
-package net.sgoliver.jrtftree.core;
 
 import java.awt.Color;
 import java.io.FileReader;
@@ -40,6 +40,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import net.sgoliver.jrtftree.util.InfoGroup;
+import net.sgoliver.jrtftree.util.RTFFilter;
 import net.sgoliver.jrtftree.util.RtfColorTable;
 import net.sgoliver.jrtftree.util.RtfFontTable;
 import net.sgoliver.jrtftree.util.RtfStyleSheet;
@@ -88,7 +89,23 @@ public class RtfTree //In Sync
 
         return clon;
     }
-    
+	public void accept(RTFFilter v) 
+	{
+		v.filter(this);
+	}
+    /**
+     * Realiza una copia exacta del árbol RTF.
+     * @return Devuelve una copia exacta del árbol RTF.
+     */
+    public RtfTree filtrarArbol(RTFFilter filtro)
+    {
+        RtfTree clon = new RtfTree();
+
+        clon.rootNode= this.getRootNode().filtrarNodo(filtro);
+
+        return clon;
+    }
+
     /**
      * Carga un fichero en formato RTF.
      * @param path Ruta del fichero con el documento.
