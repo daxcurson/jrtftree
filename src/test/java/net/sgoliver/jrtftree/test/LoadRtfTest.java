@@ -32,9 +32,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
@@ -145,7 +147,8 @@ public class LoadRtfTest // In Sync
 	private String leerFichero(String path) {
 		String contenido="";
 		try {
-			contenido=new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+			Path f=new File(path).toPath();
+			contenido=new String(Files.readAllBytes(f), StandardCharsets.UTF_8);
 		} catch (IOException ex) {
 			System.out.println("Error lectura.");
 		}
